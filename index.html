@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   </head>
-  <body>
+  <body ng-app="StudentProfile">
 
-  <div class="gradient-overlay">
-
-  </div>
+    <div class="gradient-overlay">
+      <div ng-view></div>
+    </div>
 
 
   <!-- SCRIPTS -->
@@ -27,9 +27,12 @@
   <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
   <!-- APP FIRST -->
   <script type="text/javascript" src="app/app.js"></script>
+  <script type="text/javascript" src="app/app.config.js"></script>
   <!-- FIREBASE INIT CONFIG -->
   <script type="text/javascript" src="app/data/firebase.config.js"></script>
   <!-- FACTORIES -->
   <script type="text/javascript" src="app/factories/Auth.Factory.js"></script>
+  <!-- CONTROLLERS -->
+  <script type="text/javascript" src="app/controllers/Login.Ctrl.js"></script>
   </body>
 </html>

@@ -6,14 +6,14 @@ const isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 	}
 })
 
-// app.config (function($routeProvider){
-// 	$routeProvider.
-// 	when('/', {
-// 		templateUrl: 'partials/Login.html',
-// 		controller: 'LoginCtrl'
-// 	})
-// 	otherwise('event/search')
-// });
+app.config (function($routeProvider){
+	$routeProvider.
+	when('/login', {
+		templateUrl: 'partials/Login.html',
+		controller: 'LoginCtrl'
+	}).
+	otherwise('/')
+});
 
 
 
