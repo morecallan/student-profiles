@@ -1,3 +1,59 @@
-<div class="container">
-  
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col l4 m8 s12 offset-l4 offset-m2" id="login-container">
+        <form class="col m12">
+          <div class="row valign-wrapper">
+            <h4 class="col m3 offset-m1">sup.</h4>
+            <div class="switch col m6 valign">
+              <label>
+                login.
+                <input type="checkbox" ng-model="regMode">
+                <span class="lever"></span>
+                reg.
+              </label>
+            </div>
+          </div>
+          <div ng-if="!regMode">
+            <div class="input-field col m12">
+             <i class="material-icons prefix">account_circle</i>
+             <input id="email" type="email" class="validate" ng-model="account.email">
+             <label for="email">email</label>
+            </div>
+            <div class="input-field col m12">
+             <i class="material-icons prefix">lock</i>
+             <input id="password" type="password" class="validate" ng-model="account.password">
+             <label for="password">password</label>
+            </div>
+            <div class="row">
+              <button class="btn white teal-text col m4 offset-m1 margin-top" ng-click="loginGoogle()">google.</button>
+              <button class="btn col m4 offset-m2 margin-top" ng-click="login()">login.</button>
+            </div>
+          </div>
+          <div ng-if="regMode">
+            <div class="input-field col m12">
+             <i class="material-icons prefix">account_circle</i>
+             <input id="email" type="email" class="validate" ng-model="newAccount.email">
+             <label for="email">email</label>
+            </div>
+            <div class="row">
+              <div class="input-field col m6">
+                 <i class="material-icons prefix">lock</i>
+                 <input id="password" type="password" class="validate" ng-keyup="validate()" ng-model="newAccount.password">
+                 <label for="password">password</label>
+              </div>
+              <div class="input-field col m6">
+                <i class="material-icons prefix">lock</i>
+                 <input id="password" type="password" class="validate" ng-keyup="validateConfirm()" ng-model="newAccount.passwordConfirm">
+                 <label for="password">confirm</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <button class="btn white teal-text col m4 offset-m1 margin-top" ng-click="loginGoogle()">google.</button>
+              <button class="btn col m4 offset-m2 margin-top">register.</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -35,15 +35,12 @@ app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
 
 //Firebase: Register a new user with email and password
   let registerWithEmail = (user) => {
-    console.log('this is being called')
      return $q((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then((authData) =>{
-          console.log(authData)
           resolve(authData);
         })
         .catch((error)=>{
-          console.log(error)
           reject(error);
         });
     });
