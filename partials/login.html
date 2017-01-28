@@ -7,7 +7,7 @@
             <div class="switch col m6 valign">
               <label>
                 login.
-                <input type="checkbox" ng-model="regMode">
+                <input type="checkbox" ng-model="regMode" ng-click="checkAndClear()">
                 <span class="lever"></span>
                 reg.
               </label>
@@ -16,12 +16,12 @@
           <div ng-if="!regMode">
             <div class="input-field col m12">
              <i class="material-icons prefix">account_circle</i>
-             <input id="email" type="email" class="validate" ng-model="account.email">
+             <input id="email" type="email" class="validate" ng-model="account.email" spellcheck="false" ng-keypress="clearValidationState()">
              <label for="email">email</label>
             </div>
             <div class="input-field col m12">
              <i class="material-icons prefix">lock</i>
-             <input id="password" type="password" class="validate" ng-model="account.password">
+             <input id="password" type="password" class="validate" ng-model="account.password" ng-keypress="clearValidationState()">
              <label for="password">password</label>
             </div>
             <div class="row">
@@ -30,27 +30,30 @@
             </div>
           </div>
           <div ng-if="regMode">
-            <div class="input-field col m12">
-             <i class="material-icons prefix">account_circle</i>
-             <input id="email" type="email" class="validate" ng-model="newAccount.email">
-             <label for="email">email</label>
+            <div class="row margin-top">
+              <div class="input-field col m12">
+               <i class="material-icons prefix">account_circle</i>
+               <input id="emailReg" type="email" class="validate" ng-model="newAccount.email" spellcheck="false">
+               <label for="emailReg" data-error="that's not an email.">email</label>
+              </div>
             </div>
-            <div class="row">
+
+            <div class="row margin-top">
               <div class="input-field col m6">
                  <i class="material-icons prefix">lock</i>
-                 <input id="password" type="password" class="validate" ng-keyup="validate()" ng-model="newAccount.password">
-                 <label for="password">password</label>
+                 <input id="passwordReg" type="password" class="validate" ng-keyup="validate()" ng-blur="validateImmediate()" ng-model="newAccount.password">
+                 <label for="passwordReg" data-error="6 chars min.">password</label>
               </div>
               <div class="input-field col m6">
                 <i class="material-icons prefix">lock</i>
-                 <input id="password" type="password" class="validate" ng-keyup="validateConfirm()" ng-model="newAccount.passwordConfirm">
-                 <label for="password">confirm</label>
+                 <input id="passwordConfReg" type="password" class="validate" ng-keyup="validateConfirm()" ng-blur="validateConfirmImmediate()" ng-model="newAccount.passwordConfirm">
+                 <label for="passwordConfReg" data-error="doesn't match.">confirm</label>
               </div>
             </div>
 
             <div class="row">
               <button class="btn white teal-text col m4 offset-m1 margin-top" ng-click="loginGoogle()">google.</button>
-              <button class="btn col m4 offset-m2 margin-top">register.</button>
+              <button class="btn col m4 offset-m2 margin-top" ng-click="checkThenRegister()">register.</button>
             </div>
           </div>
         </form>
