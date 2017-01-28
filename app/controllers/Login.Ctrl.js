@@ -25,7 +25,7 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
   }
 
   $scope.register = () => {
-    AuthFactory.registerWithEmail($scope.account)
+    AuthFactory.registerWithEmail($scope.newAccount)
     .then((data) => {
       console.log(data)
     })
@@ -35,29 +35,52 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
   }
 
 
-  // $scope.validate = () => {
-  // let toastSent = false;
-  //   if ($scope.newAccount.password.length < 6) {
-  //     $timeout(function () {
-  //       if (!toastSent) {Materialize.toast('psssst. password needs to be 6 chars', 5000, "gray")}
-  //       toastSent = true;
-  //     }, 5000);
-  //   } else {
-  //     $timeout.cancel();
-  //   }
-  // }
-  //
-  // let matchToastSent = false;
-  // $scope.validateConfirm = () => {
-  //   if ($scope.newAccount.password !== $scope.newAccount.confirm && !matchToastSent) {
-  //     $timeout(function () {
-  //       if (!toastSent) {Materialize.toast("those don't even match, doofus", 5000, "gray")}
-  //       matchToastSent = true;
-  //     }, 6000);
-  //   } else {
-  //     matchToastSent = false;
-  //     $timeout.cancel();
-  //   }
-  // }
+  let toastInitiated = false;
+
+  $scope.validate = () => {
+  $timeout.cancel();
+    if ($scope.newAccount.password.length < 6 && !toastInitiated) {
+      toastInitiated = true;
+      $timeout(function () {
+        if ($scope.newAccount.password.length < 6) {
+          Materialize.toast('psssst. password needs to be 6 chars', 5000, "gray")
+        }
+        toastInitiated = false;
+      }, 3000);
+    } else {
+      $timeout.cancel();
+    }
+  }
+
+  let toastConfirmInitiated = false;
+
+  $scope.validateConfirm = () => {
+    if ($scope.newAccount.password != $scope.newAccount.passwordConfirm && !toastConfirmInitiated) {
+      toastConfirmInitiated = true;
+      $timeout(function () {
+        if ($scope.newAccount.password != $scope.newAccount.passwordConfirm) {
+          Materialize.toast("passwords don't match, doofus", 5000, "gray")
+        }
+        toastConfirmInitiated = false;
+      }, 3000);
+    } else {
+      $timeout.cancel();
+    }
+  }
+
+  $scope.checkThenRegister = () => {
+    $timeout.cancel();
+    if ($scope.newAccount.password != $scope.newAccount.passwordConfirm) {
+      $("#passwordConfReg").addClass("invalid");
+    }
+
+    if ($scope.newAccount.password.length < 6) {
+      $("#passwordReg").addClass("invalid");
+    }
+
+    if ($scope.newAccount.password.length >= 6 && $scope.newAccount.password != $scope.newAccount.passwordConfirm) {
+      $scope.register();
+    }
+  }
 
 })
