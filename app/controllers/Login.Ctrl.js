@@ -1,8 +1,15 @@
 app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
   // Display Mode Variables
-  $scope.loginMode = true;
+  $scope.regMode = false;
   $scope.account = {};
-  $scope.newAccount = {};
+  $scope.newAccount = {
+    email: "",
+    password: "",
+    passwordConfirm: ""
+  };
+  let gotALoginError = false;
+
+  $scope.passwordMinLength = 6;
 
   $scope.login = () => {
     AuthFactory.authenticate($scope.account)
@@ -10,8 +17,26 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
       console.log(data)
     })
     .catch((error) => {
-      console.log(error)
+      $("#email").addClass("invalid");
+      $("#password").addClass("invalid");
+      Materialize.toast(`${error.message}`, 5000, "red accent-2")
+      gotALoginError = true;
     })
+  }
+
+  $scope.clearValidationState = () => {
+    $("#email").removeClass("invalid");
+    $("#password").removeClass("invalid");
+  }
+
+  $scope.checkAndClear = () => {
+    if ($scope.regMode && gotALoginError) {
+      $scope.account = {};
+    };
+
+    $(document).ready(function() {
+      Materialize.updateTextFields();
+    });
   }
 
   $scope.loginGoogle = () => {
@@ -39,33 +64,49 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
 
   $scope.validate = () => {
   $timeout.cancel();
+  console.log($scope.newAccount.password)
     if ($scope.newAccount.password.length < 6 && !toastInitiated) {
       toastInitiated = true;
       $timeout(function () {
         if ($scope.newAccount.password.length < 6) {
-          Materialize.toast('psssst. password needs to be 6 chars', 5000, "gray")
+          Materialize.toast('psssst. password needs to be 6 chars', 4000, "red accent-2")
         }
         toastInitiated = false;
-      }, 3000);
+      }, 5000);
+    } else {
+      $timeout.cancel();
+    }
+  }
+  $scope.validateImmediate = () => {
+    if ($scope.newAccount.password.length < 6 && !toastInitiated) {
+      toastInitiated = true;
+      Materialize.toast('psssst. password needs to be 6 chars', 4000, "red accent-2")
+    }
+    $("#passwordReg").removeClass("valid");
+  }
+
+
+  let toastConfirmInitiated = false;
+  $scope.validateConfirm = () => {
+    if ($scope.newAccount.password != $scope.newAccount.passwordConfirm && !toastConfirmInitiated && $scope.newAccount.passwordConfirm.length > 0) {
+      toastConfirmInitiated = true;
+      $timeout(function () {
+        if ($scope.newAccount.password != $scope.newAccount.passwordConfirm) {
+          Materialize.toast("passwords don't match, doofus", 4000, "red accent-2")
+        }
+        toastConfirmInitiated = false;
+      }, 5000);
     } else {
       $timeout.cancel();
     }
   }
 
-  let toastConfirmInitiated = false;
-
-  $scope.validateConfirm = () => {
+  $scope.validateConfirmImmediate = () => {
     if ($scope.newAccount.password != $scope.newAccount.passwordConfirm && !toastConfirmInitiated) {
       toastConfirmInitiated = true;
-      $timeout(function () {
-        if ($scope.newAccount.password != $scope.newAccount.passwordConfirm) {
-          Materialize.toast("passwords don't match, doofus", 5000, "gray")
-        }
-        toastConfirmInitiated = false;
-      }, 3000);
-    } else {
-      $timeout.cancel();
+      Materialize.toast("passwords don't match, doofus", 4000, "red accent-2")
     }
+    $("#passwordConfReg").removeClass("valid");
   }
 
   $scope.checkThenRegister = () => {
@@ -78,7 +119,7 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
       $("#passwordReg").addClass("invalid");
     }
 
-    if ($scope.newAccount.password.length >= 6 && $scope.newAccount.password != $scope.newAccount.passwordConfirm) {
+    if ($scope.newAccount.password.length >= 6 && $scope.newAccount.password == $scope.newAccount.passwordConfirm ) {
       $scope.register();
     }
   }
