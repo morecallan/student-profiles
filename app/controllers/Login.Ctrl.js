@@ -1,4 +1,4 @@
-app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
+app.controller("LoginCtrl", function($scope, $timeout, $location, AuthFactory){
   // Display Mode Variables
   $scope.regMode = false;
   $scope.account = {};
@@ -11,19 +11,9 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
 
   $scope.passwordMinLength = 6;
 
-  $scope.login = () => {
-    AuthFactory.authenticate($scope.account)
-    .then((data) => {
-      console.log(data)
-    })
-    .catch((error) => {
-      $("#email").addClass("invalid");
-      $("#password").addClass("invalid");
-      Materialize.toast(`${error.message}`, 5000, "red accent-2")
-      gotALoginError = true;
-    })
-  }
 
+
+  ////////////  VALIDATION METHODS: ////////////
   $scope.clearValidationState = () => {
     $("#email").removeClass("invalid");
     $("#password").removeClass("invalid");
@@ -38,27 +28,6 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
       Materialize.updateTextFields();
     });
   }
-
-  $scope.loginGoogle = () => {
-    AuthFactory.authenticateGoogle()
-    .then((data) => {
-      console.log(data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
-
-  $scope.register = () => {
-    AuthFactory.registerWithEmail($scope.newAccount)
-    .then((data) => {
-      console.log(data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
-
 
   let toastInitiated = false;
 
@@ -124,4 +93,38 @@ app.controller("LoginCtrl", function($scope, $timeout, AuthFactory){
     }
   }
 
+  ////////////  LOGIN METHODS: ////////////
+  $scope.login = () => {
+    AuthFactory.authenticate($scope.account)
+    .then((data) => {
+      $location.path("/splash");
+    })
+    .catch((error) => {
+      $("#email").addClass("invalid");
+      $("#password").addClass("invalid");
+      Materialize.toast(`${error.message}`, 5000, "red accent-2")
+      gotALoginError = true;
+    })
+  }
+
+  ////////////  REGISTRATION METHODS: ////////////
+  $scope.loginGoogle = () => {
+    AuthFactory.authenticateGoogle()
+    .then((data) => {
+      $location.path("/splash");
+    })
+    .catch((error) => {
+      Materialize.toast(`${error.message}`, 5000, "red accent-2")
+    })
+  }
+
+  $scope.register = () => {
+    AuthFactory.registerWithEmail($scope.newAccount)
+    .then((data) => {
+      $location.path("/splash");
+    })
+    .catch((error) => {
+      Materialize.toast(`${error.message}`, 5000, "red accent-2")
+    })
+  }
 })

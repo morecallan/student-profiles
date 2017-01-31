@@ -17,6 +17,11 @@ app.config (function($routeProvider){
 		controller: 'SplashCtrl',
 		resolve: {isAuth}
 	}).
+	when('/input', {
+		templateUrl: 'partials/input.html',
+		controller: 'InputCtrl',
+		resolve: {isAuth}
+	}).
 	otherwise('/')
 });
 
