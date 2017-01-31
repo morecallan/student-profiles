@@ -39,8 +39,21 @@ app.controller("InputCtrl", function($scope, DataFactory){
       $(document).ready(function() {
         $('select').material_select();
       });
+
+
     })
   }
 
   populateDropdown();
+
+  $scope.populateServerside = (serverSideLang) => {
+    $scope.student.id = serverSideLang.name.id;
+    $scope.student.cohort_name = serverSideLang.name.name;
+    $scope.student.server_side = serverSideLang.name["backend-language"];
+    $scope.server_side = serverSideLang.name["backend-language"];
+    $(document).ready(function() {
+       Materialize.updateTextFields();
+     });
+    console.log($scope.student);
+  }
 })

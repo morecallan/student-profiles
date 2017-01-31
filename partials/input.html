@@ -11,11 +11,14 @@
         <label for="last_name">Last Name</label>
       </div>
       <div class="input-field col s3">
-        <select>
-          <option value="" disabled selected>Cohort</option>
-          <option ng-repeat="cohort in cohorts" value="{{cohort.id}}">{{cohort.name}}</option>
-        </select>
-        <label>Cohort</label>
+        <select ng-options="cohort as cohort.name for cohort in cohorts"
+            ng-model="cohort.name" ng-change="populateServerside(cohort)">
+            <option value="" disabled selected>Cohort</option>
+          </select>
+      </div>
+      <div class="input-field col s3">
+        <input id="server-side" type="text" ng-value="{{server_side}}" ng-model="student.server_side" class="validate">
+        <label for="server-side">Server-Side Languase</label>
       </div>
     </div>
   </form>
