@@ -9,8 +9,13 @@ const isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 app.config (function($routeProvider){
 	$routeProvider.
 	when('/login', {
-		templateUrl: 'partials/Login.html',
+		templateUrl: 'partials/login.html',
 		controller: 'LoginCtrl'
+	}).
+	when('/splash', {
+		templateUrl: 'partials/splash.html',
+		controller: 'SplashCtrl',
+		resolve: {isAuth}
 	}).
 	otherwise('/')
 });
