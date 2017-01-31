@@ -2,9 +2,32 @@ app.controller("InputCtrl", function($scope){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
+  $scope.status = {
+    personal_img: "file_upload",
+    resume_draft: "file_upload",
+    resume_final: "file_upload",
+    resume_demo: "file_upload"
+  }
+
+  $scope.student = {
+    personal_img: "",
+    resume_draft: "",
+    resume_final: "",
+    resume_demo: ""
+  }
+
   $scope.uploadImage = (bucket, img) => {
-    storageRef.child(bucket).put(img).then((data) => {
-      console.log(data)
-    });
+    uploadTask = storageRef.child(bucket).put(img);
+
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+      $scope.status[bucket] = "query_builder";
+      $scope.$apply();
+    }, function(error) {
+      Materialize.toast(`${error.message}`, 2000, "red accent-2")
+    }, function() {
+      $scope.status[bucket] = "check_circle";
+      $scope.$apply();
+      $scope.student[bucket] = uploadTask.snapshot.downloadURL;
+    })
   }
 })

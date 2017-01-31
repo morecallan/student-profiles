@@ -94,8 +94,22 @@ app.controller("LoginCtrl", function($scope, $timeout, $location, AuthFactory){
   }
 
   ////////////  LOGIN METHODS: ////////////
+  // $scope.login = () => {
+  //   AuthFactory.authenticate($scope.account)
+  //   .then((data) => {
+  //     $location.path("/splash");
+  //   })
+  //   .catch((error) => {
+  //     $("#email").addClass("invalid");
+  //     $("#password").addClass("invalid");
+  //     Materialize.toast(`${error.message}`, 5000, "red accent-2")
+  //     gotALoginError = true;
+  //   })
+  // }
+
+  // Temporary for testing
   $scope.login = () => {
-    AuthFactory.authenticate($scope.account)
+    AuthFactory.authenticate({email: "help@me.com", password: "helpme"})
     .then((data) => {
       $location.path("/splash");
     })
@@ -106,6 +120,8 @@ app.controller("LoginCtrl", function($scope, $timeout, $location, AuthFactory){
       gotALoginError = true;
     })
   }
+
+  $scope.login()
 
   ////////////  REGISTRATION METHODS: ////////////
   $scope.loginGoogle = () => {
