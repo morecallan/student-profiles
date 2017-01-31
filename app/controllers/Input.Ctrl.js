@@ -1,6 +1,8 @@
-app.controller("InputCtrl", function($scope){
+app.controller("InputCtrl", function($scope, DataFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
+
+  $scope.cohorts = [];
 
   $scope.status = {
     personal_img: "file_upload",
@@ -30,4 +32,15 @@ app.controller("InputCtrl", function($scope){
       $scope.student[bucket] = uploadTask.snapshot.downloadURL;
     })
   }
+
+  const populateDropdown = () => {
+    DataFactory.returnCohortList().then((data)=> {
+      $scope.cohorts = data;
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    })
+  }
+
+  populateDropdown();
 })
