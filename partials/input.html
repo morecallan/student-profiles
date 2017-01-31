@@ -14,11 +14,11 @@
         <select ng-options="cohort as cohort.name for cohort in cohorts"
             ng-model="cohort.name" ng-change="populateServerside(cohort)">
             <option value="" disabled selected>Cohort</option>
-          </select>
+        </select>
       </div>
       <div class="input-field col s3">
         <input id="server-side" type="text" ng-value="{{server_side}}" ng-model="student.server_side" class="validate">
-        <label for="server-side">Server-Side Languase</label>
+        <label for="server-side">Server-Side Language</label>
       </div>
     </div>
   </form>
@@ -103,11 +103,24 @@
             <a class="btn-floating btn-large waves-effect waves-light light-green valign" ng-if="resume_demo" ng-click="uploadImage('resume_demo', resume_demo)"><i class="material-icons">{{status.resume_demo}}</i></a>
           </div>
         </div>
+
+        <!-- Input Row: portfolio_site -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="portfolio_site" ng-model="student.portfolio_site" type="url" class="validate">
+            <label for="portfolio_site" data-error="not a valid website">Portfolio Site</label>
+          </div>
+        </div>
       </form>
     </div>
 
-    <div class="col m8 above-bg">
-
-    </div>
+    <div class="col m7 offset-m1 above-bg">
+      <div class="row">
+        <h4 class="center">Pre-NSS Background</h4>
+        <select multiple class="center" ng-options="pre as pre for pre in previous"
+            ng-model="pre" ng-value="pre" ng-change="updateStudent(pre)">
+            <option value="" disabled selected>Previous Experience</option>
+        </select>
+      </div>
   </div>
-<!-- </div> -->
+</div>

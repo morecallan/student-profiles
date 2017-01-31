@@ -1,5 +1,4 @@
 app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
-  //Firebase: GOOGLE - Use input credentials to authenticate user.
     let returnCohortList = () => {
       return $q((resolve, reject) => {
         $http.get(`./app/data/cohort_seed.json`)
@@ -11,5 +10,23 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
-    return {returnCohortList: returnCohortList}
+    let returnPreviousExperienceList = () => {
+      return $q((resolve, reject) => {
+        $http.get(`./app/data/previous_experience.json`)
+          .then((previous_experience) => {
+            let previous = previous_experience.data["previous_experience"].sort();
+            previous.splice(previous.indexOf("None/Education"), 1);
+            previous.splice(previous.indexOf("None/Other"), 1);
+            previous.splice(previous.indexOf("Other"), 1);
+            previous.push("None/Education");
+            previous.push("None/Other");
+            previous.push("Other");
+            resolve(previous);
+          }).catch((error)=> {
+            reject(error);
+          });
+      });
+    };
+
+    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList}
 })
