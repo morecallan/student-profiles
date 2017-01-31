@@ -24,6 +24,11 @@ body {
   position: relative;
   z-index: 1000; }
 
+.less-above-bg {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 900; }
+
 #login-container {
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;

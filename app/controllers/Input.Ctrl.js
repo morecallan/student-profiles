@@ -67,6 +67,6 @@ app.controller("InputCtrl", function($scope, DataFactory){
   }
 
   $scope.updateStudent = (previousExperiences) => {
-    console.log(previousExperiences)
+    $scope.student.previous_experience = previousExperiences;
   }
 })
