@@ -21,3 +21,9 @@ body {
   top: 20px;
   z-index: 1000;
 }
+
+.above-bg {
+  background-color: rgba(white, 0.8);
+  position: relative;
+  z-index: 1000;
+}

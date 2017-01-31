@@ -26,10 +26,13 @@ app.config (function($routeProvider){
 });
 
 
-
 // this function is assigning the link to my Firebase url to a variable that will be used to decide whether or not the user is authorized on the Firebase account to make changes.
 app.run(($rootScope, $location, FIREBASE_CONFIG, AuthFactory) => {
 	firebase.initializeApp(FIREBASE_CONFIG);
+
+	app.constant("storage", firebase.storage());
+	app.constant("storageRef", firebase.storage().ref());
+	app.constant("personalImages", firebase.storage().ref().child('personalImages'));
 
 //watch method that fires on change of a route.  3 inputs.
     //event is a change event
