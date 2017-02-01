@@ -55,6 +55,18 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
   populateDropdownJobs();
 
+  const populateDropdownDev = () => {
+    DataFactory.returnTypeOfDevList().then((data)=> {
+      $scope.devTypes = data;
+      console.log($scope.devTypes)
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    })
+  }
+
+  populateDropdownDev();
+
 
   $scope.populateServerside = (serverSideLang) => {
     $scope.student.id = serverSideLang.name.id;
@@ -66,7 +78,8 @@ app.controller("InputCtrl", function($scope, DataFactory){
      });
   }
 
-  $scope.updateStudent = (previousExperiences) => {
-    $scope.student.previous_experience = previousExperiences;
+  $scope.updateStudent = (studentKey, studentValue) => {
+    $scope.student[studentKey] = studentValue;
+    console.log($scope.student)
   }
 })

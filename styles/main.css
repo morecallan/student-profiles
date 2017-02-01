@@ -29,11 +29,20 @@ body {
   position: relative;
   z-index: 900; }
 
+.less-less-above-bg {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 800; }
+
 #login-container {
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;
   top: 200px;
   z-index: 1000; }
+
+.container-less {
+  width: 90%;
+  margin: 2% 5%; }
 
 .margin-top {
   margin-top: 20px; }

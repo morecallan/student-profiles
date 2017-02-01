@@ -115,19 +115,36 @@
     </div>
 
     <div class="col m7 offset-m1 less-above-bg">
-      <div class="row">
+      <div class="row container-less">
         <h4 class="center">Pre-NSS Background</h4>
         <select multiple class="center" ng-options="pre as pre for pre in previous"
-            ng-model="pre" ng-value="pre" ng-change="updateStudent(pre)">
+            ng-model="pre" ng-value="pre" ng-change="updateStudent('previous_experience', pre)">
             <option value="" disabled selected>Previous Experience</option>
         </select>
       </div>
 
-      <div class="row">
+      <div class="row container-less">
         <div class="input-field col s12">
-          <textarea id="previous_experience_notes" ng-model="previous_experience_notes" class="materialize-textarea"></textarea>
+          <textarea id="previous_experience_notes" ng-model="student.previous_experience_notes" class="materialize-textarea"></textarea>
           <label for="previous_experience_notes">Notes:</label>
         </div>
       </div>
-  </div>
+    </div>
+
+    <div class="col m7 offset-m1 less-less-above-bg">
+      <div class="row container-less">
+        <h4 class="center">Student Info</h4>
+        <select multiple class="center" ng-options="devType as devType for devType in devTypes"
+            ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
+            <option value="" disabled selected>Type of Development</option>
+        </select>
+      </div>
+
+      <div class="row container-less">
+        <div class="input-field col s12">
+          <textarea id="previous_experience_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
+          <label for="previous_experience_notes">Notes:</label>
+        </div>
+      </div>
+    </div>
 </div>

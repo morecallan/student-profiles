@@ -28,5 +28,17 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
-    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList}
+    let returnTypeOfDevList = () => {
+      return $q((resolve, reject) => {
+        $http.get(`./app/data/type_of_dev_seed.json`)
+          .then((typeOfDev) => {
+            let typeOfDevList = typeOfDev.data["type-of-dev"];
+            resolve(typeOfDevList);
+          }).catch((error)=> {
+            reject(error);
+          });
+      });
+    };
+
+    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList}
 })
