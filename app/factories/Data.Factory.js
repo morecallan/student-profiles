@@ -57,5 +57,17 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
-    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList}
+    let returnTypeOfCompanyList = () => {
+      return $q((resolve, reject) => {
+        $http.get(`./app/data/type_of_company_seed.json`)
+          .then((typeOfCo) => {
+            let typeOfCoList = typeOfCo.data["type-of-dev"];
+            resolve(typeOfCoList);
+          }).catch((error)=> {
+            reject(error);
+          });
+      });
+    };
+
+    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList, returnTypeOfCompanyList: returnTypeOfCompanyList}
 })

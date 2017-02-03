@@ -140,21 +140,36 @@
 
       <div class="row container-less">
         <div class="input-field col s12">
-          <textarea id="previous_experience_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
-          <label for="previous_experience_notes">Type of development notes:</label>
+          <textarea id="type_of_dev_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
+          <label for="type_of_dev_notes">Type of development notes:</label>
         </div>
       </div>
 
       <div class="row container-less">
+        <p>Self Described Traits:</p>
         <div class="chips chips-autocomplete chips-placeholder"></div>
       </div>
 
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      <div class="row container-less">
+        <select multiple class="center" ng-options="companyType as companyType for companyType in companyTypes"
+            ng-model="companyType" ng-value="companyType" ng-change="updateStudent('company_type', companyType)">
+            <option value="" disabled selected>Type of Company Preferred</option>
+        </select>
+      </div>
+
+      <div class="row container-less">
+        <div class="input-field col s12">
+          <textarea id="type_of_co_notes" ng-model="student.type_of_co_preferred_notes" class="materialize-textarea"></textarea>
+          <label for="type_of_co_notes">Type of company preferred notes:</label>
+        </div>
+      </div>
+
+      <div class="row container-less">
+        <div class="input-field col s12">
+          <textarea id="target_co" ng-model="student.target_companies" class="materialize-textarea"></textarea>
+          <label for="target_co">Target Companies</label>
+        </div>
+      </div>
 
 
     </div>

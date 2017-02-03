@@ -58,7 +58,6 @@ app.controller("InputCtrl", function($scope, DataFactory){
   const populateDropdownDev = () => {
     DataFactory.returnTypeOfDevList().then((data)=> {
       $scope.devTypes = data;
-      console.log($scope.devTypes)
       $(document).ready(function() {
         $('select').material_select();
       });
@@ -67,18 +66,6 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
   populateDropdownDev();
 
-
-
-  // INIT AUTO COMPLETE ON CHIPS FUNCTION
-  // function transformChip(chip) {
-  //   // If it is an object, it's already a known chip
-  //   if (angular.isObject(chip)) {
-  //     return chip;
-  //   }
-  //
-  //   // Otherwise, create a new one
-  //   return { name: chip, type: 'new' }
-  // }
 
     const populateChipsForPersonalityAutocomplete = () => {
       DataFactory.returnTypeOfPersonalityList().then((data) => {
@@ -90,8 +77,18 @@ app.controller("InputCtrl", function($scope, DataFactory){
       })
     }
 
-
   populateChipsForPersonalityAutocomplete();
+
+  const populateDropdownCompany = () => {
+    DataFactory.returnTypeOfCompanyList().then((data)=> {
+      $scope.companyTypes = data;
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    })
+  }
+
+  populateDropdownCompany();
 
   $scope.populateServerside = (serverSideLang) => {
     $scope.student.id = serverSideLang.name.id;
