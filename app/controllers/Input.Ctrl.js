@@ -70,24 +70,28 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
 
   // INIT AUTO COMPLETE ON CHIPS FUNCTION
-  function transformChip(chip) {
-    // If it is an object, it's already a known chip
-    if (angular.isObject(chip)) {
-      return chip;
+  // function transformChip(chip) {
+  //   // If it is an object, it's already a known chip
+  //   if (angular.isObject(chip)) {
+  //     return chip;
+  //   }
+  //
+  //   // Otherwise, create a new one
+  //   return { name: chip, type: 'new' }
+  // }
+
+    const populateChipsForPersonalityAutocomplete = () => {
+      DataFactory.returnTypeOfPersonalityList().then((data) => {
+        let materializeAutoCompleteActions = {};
+        materializeAutoCompleteActions.autocompleteData = data.autocompleteData
+        $(document).ready(function() {
+          $('.chips-autocomplete').material_chip(materializeAutoCompleteActions)
+         });
+      })
     }
 
-    // Otherwise, create a new one
-    return { name: chip, type: 'new' }
-  }
 
-  //   const populateChipsForPersonalityAutocomplete = () => {
-    //   DataFactory.returnTypeOfPersonalityList().then((data) => {
-    //     console.log(data)
-    //     $('.chips-autocomplete').material_chip(data);
-    //   })
-    // }
-
-  // populateChipsForPersonalityAutocomplete();
+  populateChipsForPersonalityAutocomplete();
 
   $scope.populateServerside = (serverSideLang) => {
     $scope.student.id = serverSideLang.name.id;

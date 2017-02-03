@@ -48,7 +48,7 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
             let materializeObject = {}
             materializeObject.autocompleteData = {}
             for (var i = 0; i < personalityTypeList.length; i++){
-              materializeObject.autocompleteData[personalityTypeList[i]] = null;
+              materializeObject.autocompleteData[String(personalityTypeList[i])] = null;
             }
             resolve(materializeObject);
           }).catch((error)=> {
