@@ -40,5 +40,22 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
-    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList}
+    let returnTypeOfPersonalityList = () => {
+      return $q((resolve, reject) => {
+        $http.get(`./app/data/personality_traits_seed.json`)
+          .then((personalityTypes) => {
+            let personalityTypeList = personalityTypes.data["personality_traits"];
+            let materializeObject = {}
+            materializeObject.autocompleteData = {}
+            for (var i = 0; i < personalityTypeList.length; i++){
+              materializeObject.autocompleteData[personalityTypeList[i]] = null;
+            }
+            resolve(materializeObject);
+          }).catch((error)=> {
+            reject(error);
+          });
+      });
+    };
+
+    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList}
 })

@@ -126,27 +126,51 @@
       <div class="row container-less">
         <div class="input-field col s12">
           <textarea id="previous_experience_notes" ng-model="student.previous_experience_notes" class="materialize-textarea"></textarea>
-          <label for="previous_experience_notes">Notes:</label>
+          <label for="previous_experience_notes">Previous experience notes:</label>
         </div>
       </div>
-    </div>
 
-    <div class="col m7 offset-m1 less-less-above-bg">
       <div class="row container-less">
         <h4 class="center">Student Info</h4>
-        <div class="input-field col s12">
         <select multiple class="center" ng-options="devType as devType for devType in devTypes"
             ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
             <option value="" disabled selected>Type of Development</option>
-        </select>          
-        </div>
+        </select>
       </div>
 
       <div class="row container-less">
         <div class="input-field col s12">
           <textarea id="previous_experience_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
-          <label for="previous_experience_notes">Notes:</label>
+          <label for="previous_experience_notes">Type of development notes:</label>
         </div>
       </div>
+
+      <div class="row container-less">
+        <div class="input-field col s12">
+          <div class="chips chips-autocomplete"></div>
+          <label for="previous_experience_notes">Self-Described Personality:</label>
+        </div>
+      </div>
+
+      <md-chips ng-model="student.self_described_personality" md-autocomplete-snap
+              md-transform-chip="$scope.transformChip($chip)"
+              md-require-match="ctrl.autocompleteDemoRequireMatch">
+      <md-autocomplete
+          md-selected-item="ctrl.selectedItem"
+          md-search-text="ctrl.searchText"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.name"
+          placeholder="Search for a vegetable">
+        <span md-highlight-text="ctrl.searchText">{{item.name}}</span>
+      </md-autocomplete>
+      <md-chip-template>
+        <span>
+          <strong>{{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+      </md-chip-template>
+    </md-chips>
+
+
     </div>
 </div>

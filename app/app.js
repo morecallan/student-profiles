@@ -1,1 +1,1 @@
-var app = angular.module("StudentProfile", ["ngRoute", "ngFileUpload"])
+var app = angular.module("StudentProfile", ["ngRoute", "ngFileUpload", "ngMaterial"])
