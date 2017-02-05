@@ -91,6 +91,7 @@ app.controller("InputCtrl", function($scope, DataFactory){
   populateDropdownCompany();
 
   $scope.populateServerside = (serverSideLang) => {
+    console.log(serverSideLang);
     $scope.student.id = serverSideLang.name.id;
     $scope.student.cohort_name = serverSideLang.name.name;
     $scope.student.server_side = serverSideLang.name["backend-language"];
