@@ -20,7 +20,6 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
   $scope.uploadImage = (bucket, img) => {
     uploadTask = storageRef.child(bucket).put(img);
-
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
       $scope.status[bucket] = "query_builder";
       $scope.$apply();
@@ -33,65 +32,68 @@ app.controller("InputCtrl", function($scope, DataFactory){
     })
   }
 
-  const populateDropdownCohorts = () => {
+  var populateDropdownCohorts = () => {
     DataFactory.returnCohortList().then((data)=> {
+      $(document).ready(function() {
+        $('select').material_select();
+      });
       $scope.cohorts = data;
-      $(document).ready(function() {
-        $('select').material_select();
-      });
     })
   }
 
-  populateDropdownCohorts();
-
-  const populateDropdownJobs = () => {
+  var populateDropdownJobs = () => {
     DataFactory.returnPreviousExperienceList().then((data)=> {
+      $(document).ready(function() {
+        $('select').material_select();
+      });
       $scope.previous = data;
-      $(document).ready(function() {
-        $('select').material_select();
-      });
     })
   }
 
-  populateDropdownJobs();
-
-  const populateDropdownDev = () => {
+  var populateDropdownDev = () => {
     DataFactory.returnTypeOfDevList().then((data)=> {
-      $scope.devTypes = data;
       $(document).ready(function() {
         $('select').material_select();
       });
+      $scope.devTypes = data;
     })
   }
 
-  populateDropdownDev();
+  var populateDropdownCompany = () => {
+    DataFactory.returnTypeOfCompanyList().then((data)=> {
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+      $scope.companyTypes = data;
+    })
+  }
 
 
-    const populateChipsForPersonalityAutocomplete = () => {
-      DataFactory.returnTypeOfPersonalityList().then((data) => {
-        let materializeAutoCompleteActions = {};
-        materializeAutoCompleteActions.autocompleteData = data.autocompleteData
-        $(document).ready(function() {
-          $('.chips-autocomplete').material_chip(materializeAutoCompleteActions)
-         });
-      })
+    var populateAllDropDowns = () => {
+      populateDropdownCompany();
+      populateDropdownCohorts();
+      populateDropdownJobs();
+      populateDropdownDev();
     }
 
-  populateChipsForPersonalityAutocomplete();
+    populateAllDropDowns();
 
-  const populateDropdownCompany = () => {
-    DataFactory.returnTypeOfCompanyList().then((data)=> {
-      $scope.companyTypes = data;
+
+
+
+  const populateChipsForPersonalityAutocomplete = () => {
+    DataFactory.returnTypeOfPersonalityList().then((data) => {
+      let materializeAutoCompleteActions = {};
+      materializeAutoCompleteActions.autocompleteData = data.autocompleteData
       $(document).ready(function() {
-        $('select').material_select();
-      });
+        $('.chips-autocomplete').material_chip(materializeAutoCompleteActions)
+       });
     })
   }
+  populateChipsForPersonalityAutocomplete();
 
-  populateDropdownCompany();
 
   $scope.populateServerside = (serverSideLang) => {
-    console.log(serverSideLang);
     $scope.student.id = serverSideLang.name.id;
     $scope.student.cohort_name = serverSideLang.name.name;
     $scope.student.server_side = serverSideLang.name["backend-language"];
@@ -100,6 +102,7 @@ app.controller("InputCtrl", function($scope, DataFactory){
        Materialize.updateTextFields();
      });
   }
+
 
   $scope.updateStudent = (studentKey, studentValue) => {
     $scope.student[studentKey] = studentValue;
