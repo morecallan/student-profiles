@@ -50,4 +50,4 @@ body {
 .fixed-page-scroll {
   max-height: 100vh;
   max-width: 100vw;
-  overflow: auto; }
+  overflow-y: auto; }

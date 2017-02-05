@@ -16,7 +16,8 @@ app.controller("InputCtrl", function($scope, DataFactory){
     resume_draft: "",
     resume_final: "",
     resume_demo: "",
-    self_described_traits: []
+    self_described_traits: [],
+    area_of_interest: []
   }
 
   $scope.uploadImage = (bucket, img) => {
@@ -69,12 +70,22 @@ app.controller("InputCtrl", function($scope, DataFactory){
     })
   }
 
+  var populateAreaOfInterest = () => {
+    DataFactory.returnAreasOfInterest().then((data)=> {
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+      $scope.areaOfInterests = data;
+    })
+  }
+
 
     var populateAllDropDowns = () => {
       populateDropdownCompany();
       populateDropdownCohorts();
       populateDropdownJobs();
       populateDropdownDev();
+      populateAreaOfInterest();
     }
 
     populateAllDropDowns();
@@ -110,6 +121,15 @@ app.controller("InputCtrl", function($scope, DataFactory){
     $(document).ready(function() {
        Materialize.updateTextFields();
      });
+  }
+
+  $scope.updateKeyPress = (keyevent) => {
+    if (keyevent.key == "Enter") {
+      console.log("help")
+      $scope.student["area_of_interest"].push($scope.areaOfInterestTemp);
+      $scope.areaOfInterestTemp = "";
+      Materialize.toast("Interest Added!", 3000, "green")
+    }
   }
 
 

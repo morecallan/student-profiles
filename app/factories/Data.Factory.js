@@ -69,5 +69,17 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
-    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList, returnTypeOfCompanyList: returnTypeOfCompanyList}
+    let returnAreasOfInterest = () => {
+      return $q((resolve, reject) => {
+        $http.get(`./app/data/areas_of_interest_seed.json`)
+          .then((areaOfInterest) => {
+            let areaOfInterestList = areaOfInterest.data["areas-of-interest"];
+            resolve(areaOfInterestList);
+          }).catch((error)=> {
+            reject(error);
+          });
+      });
+    };
+
+    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList, returnTypeOfCompanyList: returnTypeOfCompanyList, returnAreasOfInterest: returnAreasOfInterest}
 })

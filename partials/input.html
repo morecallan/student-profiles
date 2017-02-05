@@ -145,10 +145,6 @@
         </div>
       </div>
 
-      <div class="row container-less">
-        <p>Self Described Traits:</p>
-        <div class="chips chips-autocomplete chips-placeholder"></div>
-      </div>
 
       <div class="row container-less">
         <select multiple class="center" ng-options="companyType as companyType for companyType in companyTypes"
@@ -170,6 +166,33 @@
           <label for="target_co">Target Companies</label>
         </div>
       </div>
+
+      <div class="row container-less">
+        <div class="input-field col s12">
+          <textarea id="networking_notes" ng-model="student.networking_notes" class="materialize-textarea"></textarea>
+          <label for="networking_notes">Networking notes:</label>
+        </div>
+      </div>
+
+      <div class="row container-less">
+        <select multiple class="center" ng-options="areaOfInterest as areaOfInterest for areaOfInterest in areaOfInterests"
+            ng-model="areaOfInterest" ng-value="areaOfInterest" ng-change="updateStudent('area_of_interest', areaOfInterest)">
+            <option value="" disabled selected>Areas of interest</option>
+        </select>
+      </div>
+
+      <div class="row container-less">
+       <div class="input-field col s12">
+         <input id="area_of_interest_other" type="text" ng-model="areaOfInterestTemp" class="validate" ng-keypress="updateKeyPress($event)">
+         <label for="area_of_interest_other">Areas of interest other</label>
+       </div>
+     </div>
+
+     <div class="row container-less">
+       <p>Self Described Traits:</p>
+       <div class="chips chips-autocomplete chips-placeholder"></div>
+     </div>
+
 
 
     </div>
