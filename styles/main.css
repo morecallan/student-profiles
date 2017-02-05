@@ -70,6 +70,9 @@ body {
   max-width: 100vw;
   overflow-y: auto; }
 
+.padding {
+  margin: 5px; }
+
 h4.center {
   background-color: rgba(0, 128, 128, 0.8);
   padding: 4px;

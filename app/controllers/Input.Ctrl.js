@@ -17,9 +17,11 @@ app.controller("InputCtrl", function($scope, DataFactory){
     resume_final: "",
     resume_demo: "",
     self_described_traits: [],
+    observed_traits: [],
     area_of_interest: [],
     resume: {},
-    linkedin: {}
+    linkedin: {},
+    portfolio: {}
   }
 
   $scope.uploadImage = (bucket, img) => {
@@ -99,6 +101,15 @@ app.controller("InputCtrl", function($scope, DataFactory){
     $('.chips').on('chip.delete', function(e, chip){
       var indexOfChip = $scope.student["self_described_traits"].indexOf(chip.tag)
       $scope.student["self_described_traits"].splice(indexOfChip, 1)
+    });
+
+    $('#observed.chips').on('chip.add', function(e, chip){
+      $scope.student["observed_traits"].push(chip.tag)
+    });
+
+    $('#observed.chips').on('chip.delete', function(e, chip){
+      var indexOfChip = $scope.student["self_described_traits"].indexOf(chip.tag)
+      $scope.student["observed_traits"].splice(indexOfChip, 1)
     });
 
 

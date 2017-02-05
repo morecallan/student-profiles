@@ -124,165 +124,225 @@
     </div>
 
     <div class="col m7 offset-m1 less-above-bg">
-      <div id="pre-nss">
-        <div class="row container-less">
-          <h4 class="center">Pre-NSS Background</h4>
-          <select multiple class="center" ng-options="pre as pre for pre in previous"
-              ng-model="pre" ng-value="pre" ng-change="updateStudent('previous_experience', pre)">
-              <option value="" disabled selected>Previous Experience</option>
-          </select>
-        </div>
-
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="previous_experience_notes" ng-model="student.previous_experience_notes" class="materialize-textarea"></textarea>
-            <label for="previous_experience_notes">Previous experience notes:</label>
+      <form>
+        <div id="pre-nss">
+          <div class="row container-less">
+            <h4 class="center">Pre-NSS Background</h4>
+            <select multiple class="center" ng-options="pre as pre for pre in previous"
+                ng-model="pre" ng-value="pre" ng-change="updateStudent('previous_experience', pre)">
+                <option value="" disabled selected>Previous Experience</option>
+            </select>
           </div>
-        </div>
-      </div>
 
-      <div id="student-info">
-        <div class="row container-less">
-          <h4 class="center">Student Info</h4>
-          <select class="center" ng-options="devType as devType for devType in devTypes"
-              ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
-              <option value="" disabled selected>Type of Development</option>
-          </select>
-        </div>
-
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="type_of_dev_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
-            <label for="type_of_dev_notes">Type of development notes:</label>
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="previous_experience_notes" ng-model="student.previous_experience_notes" class="materialize-textarea"></textarea>
+              <label for="previous_experience_notes">Previous experience notes:</label>
+            </div>
           </div>
         </div>
 
-
-        <div class="row container-less">
-          <select multiple class="center" ng-options="companyType as companyType for companyType in companyTypes"
-              ng-model="companyType" ng-value="companyType" ng-change="updateStudent('company_type', companyType)">
-              <option value="" disabled selected>Type of Company Preferred</option>
-          </select>
-        </div>
-
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="type_of_co_notes" ng-model="student.type_of_co_preferred_notes" class="materialize-textarea"></textarea>
-            <label for="type_of_co_notes">Type of company preferred notes:</label>
+        <div id="student-info">
+          <div class="row container-less">
+            <h4 class="center">Student Info</h4>
+            <select class="center" ng-options="devType as devType for devType in devTypes"
+                ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
+                <option value="" disabled selected>Type of Development</option>
+            </select>
           </div>
-        </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="target_co" ng-model="student.target_companies" class="materialize-textarea"></textarea>
-            <label for="target_co">Target Companies</label>
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="type_of_dev_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
+              <label for="type_of_dev_notes">Type of development notes:</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="networking_notes" ng-model="student.networking_notes" class="materialize-textarea"></textarea>
-            <label for="networking_notes">Networking notes:</label>
+
+          <div class="row container-less">
+            <select multiple class="center" ng-options="companyType as companyType for companyType in companyTypes"
+                ng-model="companyType" ng-value="companyType" ng-change="updateStudent('company_type', companyType)">
+                <option value="" disabled selected>Type of Company Preferred</option>
+            </select>
           </div>
-        </div>
 
-        <div class="row container-less">
-          <select multiple class="center" ng-options="areaOfInterest as areaOfInterest for areaOfInterest in areaOfInterests"
-              ng-model="areaOfInterest" ng-value="areaOfInterest" ng-change="updateStudent('area_of_interest', areaOfInterest)">
-              <option value="" disabled selected>Areas of interest</option>
-          </select>
-        </div>
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="type_of_co_notes" ng-model="student.type_of_co_preferred_notes" class="materialize-textarea"></textarea>
+              <label for="type_of_co_notes">Type of company preferred notes:</label>
+            </div>
+          </div>
 
-        <div class="row container-less">
-         <div class="input-field col s12">
-           <input id="area_of_interest_other" type="text" ng-model="areaOfInterestTemp" class="validate" ng-keypress="updateKeyPress($event)">
-           <label for="area_of_interest_other">Areas of interest other</label>
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="target_co" ng-model="student.target_companies" class="materialize-textarea"></textarea>
+              <label for="target_co">Target Companies</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="networking_notes" ng-model="student.networking_notes" class="materialize-textarea"></textarea>
+              <label for="networking_notes">Networking notes:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <select multiple class="center" ng-options="areaOfInterest as areaOfInterest for areaOfInterest in areaOfInterests"
+                ng-model="areaOfInterest" ng-value="areaOfInterest" ng-change="updateStudent('area_of_interest', areaOfInterest)">
+                <option value="" disabled selected>Areas of interest</option>
+            </select>
+          </div>
+
+          <div class="row container-less">
+           <div class="input-field col s12">
+             <input id="area_of_interest_other" type="text" ng-model="areaOfInterestTemp" class="validate" ng-keypress="updateKeyPress($event)">
+             <label for="area_of_interest_other">Areas of interest other</label>
+           </div>
          </div>
-       </div>
 
-       <div class="row container-less">
-         <p>Self Described Traits:</p>
-         <div class="chips chips-autocomplete chips-placeholder"></div>
-       </div>
-      </div>
+         <div class="row container-less">
+           <p>Self Described Traits:</p>
+           <div class="chips chips-autocomplete chips-placeholder"></div>
+         </div>
+        </div>
 
-      <div id="resume_review">
-        <div class="row container-less">
-          <h4 class="center">Resume Review</h4>
-          <div class="input-field col s12">
-            <textarea id="resume_formatting" ng-model="student.resume.formatting" class="materialize-textarea"></textarea>
-            <label for="resume_formatting">Resume Formatting:</label>
+        <div id="resume_review">
+          <div class="row container-less">
+            <h4 class="center">Resume Review</h4>
+            <div class="input-field col s12">
+              <textarea id="resume_formatting" ng-model="student.resume.formatting" class="materialize-textarea"></textarea>
+              <label for="resume_formatting">Resume Formatting:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="resume_job_description" ng-model="student.resume.nss_job_description" class="materialize-textarea"></textarea>
+              <label for="resume_job_description">NSS Job Description:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="previous_work_history" ng-model="student.resume.previous_work_history" class="materialize-textarea"></textarea>
+              <label for="previous_work_history">Previous Work History:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="projects" ng-model="student.resume.projects" class="materialize-textarea"></textarea>
+              <label for="projects">Projects:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="general" ng-model="student.resume.general" class="materialize-textarea"></textarea>
+              <label for="general">General:</label>
+            </div>
           </div>
         </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="resume_job_description" ng-model="student.resume.nss_job_description" class="materialize-textarea"></textarea>
-            <label for="resume_job_description">NSS Job Description:</label>
+        <div id="linkedin_review">
+          <div class="row container-less">
+            <h4 class="center">LinkedIn Review</h4>
+            <div class="input-field col s12">
+              <textarea id="linkedin_summary" ng-model="student.linkedin.summary" class="materialize-textarea"></textarea>
+              <label for="linkedin_summary">Summary:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="linkedin_job_description" ng-model="student.linkedin.nss_job_description" class="materialize-textarea"></textarea>
+              <label for="linkedin_job_description">NSS Job Description:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="linkedin_work_history" ng-model="student.linkedin.previous_work_history" class="materialize-textarea"></textarea>
+              <label for="linkedin_work_history">Previous Work History:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="linkedin_projects" ng-model="student.resume.projects" class="materialize-textarea"></textarea>
+              <label for="linkedin_projects">Projects:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="linkedin_general" ng-model="student.resume.general" class="materialize-textarea"></textarea>
+              <label for="linkedin_general">General:</label>
+            </div>
           </div>
         </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="previous_work_history" ng-model="student.resume.previous_work_history" class="materialize-textarea"></textarea>
-            <label for="previous_work_history">Previous Work History:</label>
+        <div id="portfolio_site_review">
+          <div class="row container-less">
+            <h4 class="center">Portfolio Site Review</h4>
+            <div class="input-field col s12">
+              <textarea id="portfolio_site_format" ng-model="student.portfolio.format" class="materialize-textarea"></textarea>
+              <label for="portfolio_site_summary">Formatting and Styling:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="portfolio_site_projects" ng-model="student.portfolio.projects" class="materialize-textarea"></textarea>
+              <label for="portfolio_site_projects">Projects:</label>
+            </div>
+          </div>
+
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="portfolio_site_general" ng-model="student.portfolio.general" class="materialize-textarea"></textarea>
+              <label for="portfolio_site_general">General:</label>
+            </div>
           </div>
         </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="projects" ng-model="student.resume.projects" class="materialize-textarea"></textarea>
-            <label for="projects">Projects:</label>
+        <div id="student_concerns">
+          <div class="row container-less">
+            <h4 class="center">Student Concerns</h4>
+            <div class="input-field col s12">
+              <textarea id="student_concerns" ng-model="student.student_concerns" class="materialize-textarea"></textarea>
+              <label for="student_concerns">Student Concerns:</label>
+            </div>
           </div>
         </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="general" ng-model="student.resume.general" class="materialize-textarea"></textarea>
-            <label for="general">General:</label>
-          </div>
-        </div>
-      </div>
-
-      <div id="linkedin_review">
-        <div class="row container-less">
-          <h4 class="center">LinkedIn Review</h4>
-          <div class="input-field col s12">
-            <textarea id="linkedin_summary" ng-model="student.linkedin.summary" class="materialize-textarea"></textarea>
-            <label for="linkedin_summary">Summary:</label>
+        <div id="observed_characteristcs">
+          <div class="row container-less">
+            <h4 class="center">Observed Characteristics</h4>
+            <div class="row container-less">
+              <p>Observed Traits:</p>
+              <div id="observed" class="chips chips-autocomplete chips-placeholder"></div>
+            </div>
           </div>
         </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="linkedin_job_description" ng-model="student.linkedin.nss_job_description" class="materialize-textarea"></textarea>
-            <label for="linkedin_job_description">NSS Job Description:</label>
+        <div id="student_concerns">
+          <div class="row container-less">
+            <h4 class="center">Prediction</h4>
+            <div class="input-field col s12">
+              <textarea id="prediction" ng-model="student.prediction" class="materialize-textarea"></textarea>
+              <label for="prediction">Prediction:</label>
+            </div>
           </div>
         </div>
 
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="linkedin_work_history" ng-model="student.linkedin.previous_work_history" class="materialize-textarea"></textarea>
-            <label for="linkedin_work_history">Previous Work History:</label>
+        <div class="row buffer">
+          <div class="col s4 offset-s4">
+            <button class="btn" type="button" name="button" ng-click="submitStudent()">Submit Student</button>
           </div>
         </div>
-
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="linkedin_projects" ng-model="student.linkedin.projects" class="materialize-textarea"></textarea>
-            <label for="linkedin_projects">Projects:</label>
-          </div>
-        </div>
-
-        <div class="row container-less">
-          <div class="input-field col s12">
-            <textarea id="linkedin_general" ng-model="student.linkedin.general" class="materialize-textarea"></textarea>
-            <label for="linkedin_general">General:</label>
-          </div>
-        </div>
-      </div>
-
-
-
+      </form>
     </div>
 </div>
