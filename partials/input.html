@@ -201,8 +201,36 @@
         <div class="row container-less">
           <h4 class="center">Resume Review</h4>
           <div class="input-field col s12">
-            <textarea id="resume_formatting" ng-model="student.resume_formatting" class="materialize-textarea"></textarea>
+            <textarea id="resume_formatting" ng-model="student.resume.formatting" class="materialize-textarea"></textarea>
             <label for="resume_formatting">Resume Formatting:</label>
+          </div>
+        </div>
+
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="resume_job_description" ng-model="student.resume.nss_job_description" class="materialize-textarea"></textarea>
+            <label for="resume_job_description">NSS Job Description:</label>
+          </div>
+        </div>
+
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="previous_work_history" ng-model="student.resume.previous_work_history" class="materialize-textarea"></textarea>
+            <label for="previous_work_history">Previous Work History:</label>
+          </div>
+        </div>
+
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="projects" ng-model="student.resume.projects" class="materialize-textarea"></textarea>
+            <label for="projects">Projects:</label>
+          </div>
+        </div>
+
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="general" ng-model="student.resume.general" class="materialize-textarea"></textarea>
+            <label for="general">General:</label>
           </div>
         </div>
       </div>

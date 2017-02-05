@@ -17,7 +17,8 @@ app.controller("InputCtrl", function($scope, DataFactory){
     resume_final: "",
     resume_demo: "",
     self_described_traits: [],
-    area_of_interest: []
+    area_of_interest: [],
+    resume: {}
   }
 
   $scope.uploadImage = (bucket, img) => {
@@ -125,7 +126,6 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
   $scope.updateKeyPress = (keyevent) => {
     if (keyevent.key == "Enter") {
-      console.log("help")
       $scope.student["area_of_interest"].push($scope.areaOfInterestTemp);
       $scope.areaOfInterestTemp = "";
       Materialize.toast("Interest Added!", 3000, "green")
@@ -135,6 +135,5 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
   $scope.updateStudent = (studentKey, studentValue) => {
     $scope.student[studentKey] = studentValue;
-    console.log($scope.student)
   }
 })
