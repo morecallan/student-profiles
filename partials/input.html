@@ -132,7 +132,7 @@
 
       <div class="row container-less">
         <h4 class="center">Student Info</h4>
-        <select multiple class="center" ng-options="devType as devType for devType in devTypes"
+        <select class="center" ng-options="devType as devType for devType in devTypes"
             ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
             <option value="" disabled selected>Type of Development</option>
         </select>
