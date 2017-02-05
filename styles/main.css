@@ -40,6 +40,15 @@ body {
   top: 200px;
   z-index: 1000; }
 
+#other-notes {
+  width: 30%;
+  position: fixed;
+  left: 5%;
+  top: 80%;
+  background-color: rgba(128, 0, 128, 0.4);
+  z-index: 1000;
+  color: white !important; }
+
 .container-less {
   width: 90%;
   margin: 2% 5%; }
