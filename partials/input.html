@@ -115,83 +115,97 @@
     </div>
 
     <div class="col m7 offset-m1 less-above-bg">
-      <div class="row container-less">
-        <h4 class="center">Pre-NSS Background</h4>
-        <select multiple class="center" ng-options="pre as pre for pre in previous"
-            ng-model="pre" ng-value="pre" ng-change="updateStudent('previous_experience', pre)">
-            <option value="" disabled selected>Previous Experience</option>
-        </select>
-      </div>
+      <div id="pre-nss">
+        <div class="row container-less">
+          <h4 class="center">Pre-NSS Background</h4>
+          <select multiple class="center" ng-options="pre as pre for pre in previous"
+              ng-model="pre" ng-value="pre" ng-change="updateStudent('previous_experience', pre)">
+              <option value="" disabled selected>Previous Experience</option>
+          </select>
+        </div>
 
-      <div class="row container-less">
-        <div class="input-field col s12">
-          <textarea id="previous_experience_notes" ng-model="student.previous_experience_notes" class="materialize-textarea"></textarea>
-          <label for="previous_experience_notes">Previous experience notes:</label>
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="previous_experience_notes" ng-model="student.previous_experience_notes" class="materialize-textarea"></textarea>
+            <label for="previous_experience_notes">Previous experience notes:</label>
+          </div>
         </div>
       </div>
 
-      <div class="row container-less">
-        <h4 class="center">Student Info</h4>
-        <select class="center" ng-options="devType as devType for devType in devTypes"
-            ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
-            <option value="" disabled selected>Type of Development</option>
-        </select>
-      </div>
-
-      <div class="row container-less">
-        <div class="input-field col s12">
-          <textarea id="type_of_dev_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
-          <label for="type_of_dev_notes">Type of development notes:</label>
+      <div id="student-info">
+        <div class="row container-less">
+          <h4 class="center">Student Info</h4>
+          <select class="center" ng-options="devType as devType for devType in devTypes"
+              ng-model="devType" ng-value="devType" ng-change="updateStudent('dev_type', devType)">
+              <option value="" disabled selected>Type of Development</option>
+          </select>
         </div>
-      </div>
 
-
-      <div class="row container-less">
-        <select multiple class="center" ng-options="companyType as companyType for companyType in companyTypes"
-            ng-model="companyType" ng-value="companyType" ng-change="updateStudent('company_type', companyType)">
-            <option value="" disabled selected>Type of Company Preferred</option>
-        </select>
-      </div>
-
-      <div class="row container-less">
-        <div class="input-field col s12">
-          <textarea id="type_of_co_notes" ng-model="student.type_of_co_preferred_notes" class="materialize-textarea"></textarea>
-          <label for="type_of_co_notes">Type of company preferred notes:</label>
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="type_of_dev_notes" ng-model="student.type_of_dev_notes" class="materialize-textarea"></textarea>
+            <label for="type_of_dev_notes">Type of development notes:</label>
+          </div>
         </div>
-      </div>
 
-      <div class="row container-less">
-        <div class="input-field col s12">
-          <textarea id="target_co" ng-model="student.target_companies" class="materialize-textarea"></textarea>
-          <label for="target_co">Target Companies</label>
+
+        <div class="row container-less">
+          <select multiple class="center" ng-options="companyType as companyType for companyType in companyTypes"
+              ng-model="companyType" ng-value="companyType" ng-change="updateStudent('company_type', companyType)">
+              <option value="" disabled selected>Type of Company Preferred</option>
+          </select>
         </div>
-      </div>
 
-      <div class="row container-less">
-        <div class="input-field col s12">
-          <textarea id="networking_notes" ng-model="student.networking_notes" class="materialize-textarea"></textarea>
-          <label for="networking_notes">Networking notes:</label>
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="type_of_co_notes" ng-model="student.type_of_co_preferred_notes" class="materialize-textarea"></textarea>
+            <label for="type_of_co_notes">Type of company preferred notes:</label>
+          </div>
         </div>
-      </div>
 
-      <div class="row container-less">
-        <select multiple class="center" ng-options="areaOfInterest as areaOfInterest for areaOfInterest in areaOfInterests"
-            ng-model="areaOfInterest" ng-value="areaOfInterest" ng-change="updateStudent('area_of_interest', areaOfInterest)">
-            <option value="" disabled selected>Areas of interest</option>
-        </select>
-      </div>
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="target_co" ng-model="student.target_companies" class="materialize-textarea"></textarea>
+            <label for="target_co">Target Companies</label>
+          </div>
+        </div>
 
-      <div class="row container-less">
-       <div class="input-field col s12">
-         <input id="area_of_interest_other" type="text" ng-model="areaOfInterestTemp" class="validate" ng-keypress="updateKeyPress($event)">
-         <label for="area_of_interest_other">Areas of interest other</label>
+        <div class="row container-less">
+          <div class="input-field col s12">
+            <textarea id="networking_notes" ng-model="student.networking_notes" class="materialize-textarea"></textarea>
+            <label for="networking_notes">Networking notes:</label>
+          </div>
+        </div>
+
+        <div class="row container-less">
+          <select multiple class="center" ng-options="areaOfInterest as areaOfInterest for areaOfInterest in areaOfInterests"
+              ng-model="areaOfInterest" ng-value="areaOfInterest" ng-change="updateStudent('area_of_interest', areaOfInterest)">
+              <option value="" disabled selected>Areas of interest</option>
+          </select>
+        </div>
+
+        <div class="row container-less">
+         <div class="input-field col s12">
+           <input id="area_of_interest_other" type="text" ng-model="areaOfInterestTemp" class="validate" ng-keypress="updateKeyPress($event)">
+           <label for="area_of_interest_other">Areas of interest other</label>
+         </div>
        </div>
-     </div>
 
-     <div class="row container-less">
-       <p>Self Described Traits:</p>
-       <div class="chips chips-autocomplete chips-placeholder"></div>
-     </div>
+       <div class="row container-less">
+         <p>Self Described Traits:</p>
+         <div class="chips chips-autocomplete chips-placeholder"></div>
+       </div>
+      </div>
+
+      <div id="resume_review">
+        <div class="row container-less">
+          <h4 class="center">Resume Review</h4>
+          <div class="input-field col s12">
+            <textarea id="resume_formatting" ng-model="student.resume_formatting" class="materialize-textarea"></textarea>
+            <label for="resume_formatting">Resume Formatting:</label>
+          </div>
+        </div>
+      </div>
 
 
 
