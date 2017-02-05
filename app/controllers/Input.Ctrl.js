@@ -18,7 +18,8 @@ app.controller("InputCtrl", function($scope, DataFactory){
     resume_demo: "",
     self_described_traits: [],
     area_of_interest: [],
-    resume: {}
+    resume: {},
+    linkedin: {}
   }
 
   $scope.uploadImage = (bucket, img) => {
