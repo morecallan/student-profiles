@@ -94,11 +94,11 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
     populateAllDropDowns();
 
-    $('.chips').on('chip.add', function(e, chip){
+    $('#self.chips').on('chip.add', function(e, chip){
       $scope.student["self_described_traits"].push(chip.tag)
     });
 
-    $('.chips').on('chip.delete', function(e, chip){
+    $('#self.chips').on('chip.delete', function(e, chip){
       var indexOfChip = $scope.student["self_described_traits"].indexOf(chip.tag)
       $scope.student["self_described_traits"].splice(indexOfChip, 1)
     });
@@ -147,5 +147,9 @@ app.controller("InputCtrl", function($scope, DataFactory){
 
   $scope.updateStudent = (studentKey, studentValue) => {
     $scope.student[studentKey] = studentValue;
+  }
+
+  $scope.submitStudent = () => {
+    console.log($scope.student)
   }
 })
