@@ -35,6 +35,13 @@ app.config (function($routeProvider){
 	otherwise('/')
 });
 
+app.config(function(localStorageServiceProvider) {
+	localStorageServiceProvider
+    .setPrefix('StudentProfile')
+    .setStorageCookie(45, '/', false)
+    .setStorageCookieDomain(window.location)
+})
+
 
 // this function is assigning the link to my Firebase url to a variable that will be used to decide whether or not the user is authorized on the Firebase account to make changes.
 app.run(($rootScope, $location, FIREBASE_CONFIG, AuthFactory) => {

@@ -1,8 +1,34 @@
-app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFactory){
+app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFactory, localStorageService){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
   $scope.submitMessage = "Add Student"
+
+   var timeout = null;
+
+  var submit = function() {
+    console.log("called it")
+   return localStorageService.set("student", $scope.student);
+  }
+
+
+  var debounceSaveUpdates = function(newVal, oldVal) {
+    if (newVal != oldVal) {
+      if (timeout) {
+        $timeout.cancel(timeout)
+      }
+      timeout = $timeout(submit, 1000);  // 1000 = 1 second
+    }
+  };
+
+  $scope.$watch('student', submit, true)
+
+  function getItem(key) {
+    var student = localStorageService.get(key);
+    $scope.student = student;
+  }
+
+  getItem("student")
 
   $scope.expanded = false;
   $scope.expand = () => {
