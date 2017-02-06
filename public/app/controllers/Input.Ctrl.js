@@ -4,6 +4,11 @@ app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFact
 
   $scope.submitMessage = "Add Student"
 
+  $scope.expanded = false;
+  $scope.expand = () => {
+    $scope.expanded = !$scope.expanded
+  }
+
   $scope.cohorts = [];
 
   $scope.status = {

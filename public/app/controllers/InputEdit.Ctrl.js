@@ -4,6 +4,11 @@ app.controller("InputEditCtrl", function($scope, $location, $routeParams, DataFa
 
   $scope.cohorts = [];
 
+  $scope.expanded = false;
+  $scope.expand = () => {
+    $scope.expanded = !$scope.expanded
+  }
+
   $scope.submitMessage = "Update Student"
 
 
@@ -40,6 +45,7 @@ app.controller("InputEditCtrl", function($scope, $location, $routeParams, DataFa
       $scope.student[bucket] = uploadTask.snapshot.downloadURL;
     })
   }
+
   var populateDropdownCohorts = () => {
     DataFactory.returnCohortList().then((data)=> {
       $(document).ready(function() {

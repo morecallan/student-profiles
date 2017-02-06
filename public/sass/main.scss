@@ -64,8 +64,17 @@ body {
   margin: 5px 0;
 }
 
+.buffer-more {
+  margin: 10px 0;
+}
+
 h4.center {
   background-color: rgba(teal, 0.8);
   padding: 4px;
   color: white;
+}
+
+.no-margin {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }

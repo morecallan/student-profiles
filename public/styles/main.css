@@ -41,6 +41,17 @@
     font-size: 16px;
     color: white; }
 
+#stick-update {
+  width: 30%;
+  position: fixed;
+  left: 5%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  bottom: 20%;
+  max-height: 160px;
+  z-index: 1000;
+  color: white !important; }
+
 body {
   background: url("https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/10/designer-developer-1200x616.jpg");
   background-size: cover; }
@@ -92,7 +103,14 @@ body {
 .buffer {
   margin: 5px 0; }
 
+.buffer-more {
+  margin: 10px 0; }
+
 h4.center {
   background-color: rgba(0, 128, 128, 0.8);
   padding: 4px;
   color: white; }
+
+.no-margin {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important; }

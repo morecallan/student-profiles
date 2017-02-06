@@ -20,3 +20,15 @@
     color: white;
   }
 }
+
+#stick-update {
+  width: 30%;
+  position: fixed;
+  left: 5%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  bottom: 20%;
+  max-height: 160px;
+  z-index: 1000;
+  color: white !important;
+}
