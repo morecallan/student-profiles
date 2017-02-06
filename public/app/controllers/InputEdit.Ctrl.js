@@ -4,6 +4,9 @@ app.controller("InputEditCtrl", function($scope, $routeParams, DataFactory, Stud
 
   $scope.cohorts = [];
 
+  $scope.submitMessage = "Update Student"
+
+
   let studentId = $routeParams.studentId
 
 
@@ -149,10 +152,9 @@ app.controller("InputEditCtrl", function($scope, $routeParams, DataFactory, Stud
   }
 
   $scope.submitStudent = () => {
-    console.log($scope.student)
-    // StudentFactory.addNewStudent($scope.student).then((data) => {
-    //   console.log(data)
-    // })
+    StudentFactory.updateOneStudent($scope.student, studentId).then((data) => {
+      console.log(data)
+    })
   }
 
 

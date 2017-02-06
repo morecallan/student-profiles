@@ -2,6 +2,8 @@ app.controller("InputCtrl", function($scope, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
+  $scope.submitMessage = "Add Student"
+
   $scope.cohorts = [];
 
   $scope.status = {
@@ -12,16 +14,41 @@ app.controller("InputCtrl", function($scope, DataFactory, StudentFactory){
   }
 
   $scope.student = {
+    area_of_interest: [],
+    cohort_name: "",
+    company_type: [],
+    dev_type: [],
+    first_name: "",
+    last_name: "",
+    linkedin: {},
+    networking_notes: "",
+    observed_traits: [],
+    other_notes: "",
     personal_img: "",
+    portfolio: {
+      format: "",
+      general: "",
+      projects: ""
+    },
+    prediction: "",
+    previous_experience: [],
+    previous_experience_notes: "",
+    resume: {
+      formatting: "",
+      general: "",
+      nss_job_description: "",
+      previous_work_history: "",
+      projects: ""
+    },
+    resume_demo: "",
     resume_draft: "",
     resume_final: "",
-    resume_demo: "",
     self_described_traits: [],
-    observed_traits: [],
-    area_of_interest: [],
-    resume: {},
-    linkedin: {},
-    portfolio: {}
+    server_side: "",
+    student_concerns: "",
+    target_companies: "",
+    type_of_co_preferred_notes: "",
+    type_of_dev_notes: ""
   }
 
   $scope.uploadImage = (bucket, img) => {
