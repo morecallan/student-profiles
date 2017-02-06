@@ -1,4 +1,4 @@
-app.controller("InputEditCtrl", function($scope, $location, $routeParams, DataFactory, StudentFactory){
+app.controller("InputEditCtrl", function($scope, $timeout, $location, $routeParams, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
@@ -16,10 +16,13 @@ app.controller("InputEditCtrl", function($scope, $location, $routeParams, DataFa
 
 
   StudentFactory.returnOneStudent(studentId).then((data) => {
-    $(document).ready(function() {
-       Materialize.updateTextFields();
-     });
     $scope.student = data;
+    $timeout(function(){
+      $(document).ready(function() {
+         Materialize.updateTextFields();
+         $('select').material_select();
+       });
+    }, 10)
   })
 
 

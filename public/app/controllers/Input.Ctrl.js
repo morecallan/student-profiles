@@ -1,34 +1,25 @@
-app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFactory, localStorageService){
+app.controller("InputCtrl", function($scope, $q, $location, DataFactory, StudentFactory, localStorageService){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
   $scope.submitMessage = "Add Student"
 
-   var timeout = null;
 
   var submit = function() {
-    console.log("called it")
    return localStorageService.set("student", $scope.student);
   }
 
 
-  var debounceSaveUpdates = function(newVal, oldVal) {
-    if (newVal != oldVal) {
-      if (timeout) {
-        $timeout.cancel(timeout)
-      }
-      timeout = $timeout(submit, 1000);  // 1000 = 1 second
-    }
-  };
-
   $scope.$watch('student', submit, true)
-
-  function getItem(key) {
-    var student = localStorageService.get(key);
-    $scope.student = student;
-  }
-
-  getItem("student")
+  $scope.$watch('student.area_of_interest', submit, true)
+  $scope.$watch('student.company_type', submit, true)
+  $scope.$watch('student.dev_type', submit, true)
+  $scope.$watch('student.linkedin', submit, true)
+  $scope.$watch('student.observed_traits', submit, true)
+  $scope.$watch('student.portfolio', submit, true)
+  $scope.$watch('student.previous_experience', submit, true)
+  $scope.$watch('student.resume', submit, true)
+  $scope.$watch('student.self_described_traits', submit, true)
 
   $scope.expanded = false;
   $scope.expand = () => {
@@ -81,6 +72,25 @@ app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFact
     type_of_co_preferred_notes: "",
     type_of_dev_notes: ""
   }
+
+  function getItem(key) {
+    return $q (function(resolve, reject) {
+      var student = localStorageService.get(key);
+      if (student) {
+        resolve(student)
+      } else {
+        reject()
+      }
+    })
+  }
+
+  getItem("student").then((student) => {
+    $scope.student = student
+    $(document).ready(function() {
+      Materialize.updateTextFields();
+    })
+  });
+
 
   $scope.uploadImage = (bucket, img) => {
     uploadTask = storageRef.child(bucket).put(img);
@@ -209,6 +219,7 @@ app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFact
 
   $scope.submitStudent = () => {
     StudentFactory.addNewStudent($scope.student).then((data) => {
+      localStorageService.remove("student");
       Materialize.toast("Student Added!", 3000, "green")
       $location.path("/splash")
     })
