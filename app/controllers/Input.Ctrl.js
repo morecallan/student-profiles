@@ -1,4 +1,4 @@
-app.controller("InputCtrl", function($scope, DataFactory){
+app.controller("InputCtrl", function($scope, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
@@ -150,6 +150,8 @@ app.controller("InputCtrl", function($scope, DataFactory){
   }
 
   $scope.submitStudent = () => {
-    console.log($scope.student)
+    StudentFactory.addNewStudent($scope.student).then((data) => {
+      console.log(data)
+    })
   }
 })
