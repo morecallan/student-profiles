@@ -20,6 +20,7 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
         $http.get(
             `${FIREBASE_CONFIG.databaseURL}/students.json`)
         .then((data) => {
+          data = data.data
           var students = [];
                 if (data === null) {
                      var students = [];
