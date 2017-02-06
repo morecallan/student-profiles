@@ -3,6 +3,48 @@
 @import "input";
 @import "sticky-note";
 
+body {
+  background: url("https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/10/designer-developer-1200x616.jpg");
+  background-size: cover;
+}
+
+.gradient-overlay {
+  background: url("http://cdn.pcwallart.com/images/gradient-wallpaper-2.jpg");
+  background-size: cover;
+  opacity: 0.8;
+  width: 100vw;
+  height: 110vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#splash-page {
+  background-color: rgba(white, 0.8);
+  position: relative;
+  top: 20px;
+  z-index: 1000;
+}
+
+.above-bg {
+  background-color: rgba(white, 0.8);
+  position: relative;
+  z-index: 1000;
+}
+
+.less-above-bg {
+  background-color: rgba(white, 0.8);
+  position: relative;
+  z-index: 900;
+}
+
+.less-less-above-bg {
+  background-color: rgba(white, 0.8);
+  position: relative;
+  z-index: 800;
+}
+
 .container-less {
   width: 90%;
   margin: 2% 5%;

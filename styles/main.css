@@ -1,3 +1,46 @@
+#splash-page {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  top: 20px;
+  z-index: 1000; }
+  #splash-page .btn-floating {
+    margin: 10px 0; }
+  #splash-page .card-title {
+    background-color: rgba(0, 128, 128, 0.8);
+    color: white;
+    width: 100%; }
+  #splash-page .card-content {
+    font-size: 20px;
+    padding: 1%; }
+
+.card-image-set-height img {
+  max-height: 200px !important;
+  object-fit: contain; }
+
+#login-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  top: 200px;
+  z-index: 1000; }
+
+#other-notes {
+  width: 30%;
+  position: fixed;
+  left: 5%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  bottom: 2%;
+  max-height: 160px;
+  background-color: rgba(0, 128, 128, 0.8);
+  z-index: 1000;
+  color: white !important; }
+  #other-notes textarea {
+    max-height: 60px;
+    overflow-y: auto; }
+  #other-notes label {
+    font-size: 16px;
+    color: white; }
+
 body {
   background: url("https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/10/designer-developer-1200x616.jpg");
   background-size: cover; }
@@ -33,30 +76,6 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 800; }
-
-#login-container {
-  background-color: rgba(255, 255, 255, 0.8);
-  position: relative;
-  top: 200px;
-  z-index: 1000; }
-
-#other-notes {
-  width: 30%;
-  position: fixed;
-  left: 5%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  bottom: 2%;
-  max-height: 160px;
-  background-color: rgba(0, 128, 128, 0.8);
-  z-index: 1000;
-  color: white !important; }
-  #other-notes textarea {
-    max-height: 60px;
-    overflow-y: auto; }
-  #other-notes label {
-    font-size: 16px;
-    color: white; }
 
 .container-less {
   width: 90%;
