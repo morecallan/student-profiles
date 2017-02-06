@@ -43,6 +43,7 @@
           </div>
 
           <div class="col m3 valign-wrapper">
+            <a class="btn-floating btn-large waves-effect waves-light teal valign" ng-if="student.personal_img && !personal_img"><i class="material-icons">check</i></a>
             <a class="btn-floating btn-large waves-effect waves-light light-green valign" ng-if="personal_img" ng-click="uploadImage('personal_img', personal_img)"><i class="material-icons">{{status.personal_img}}</i></a>
           </div>
         </div>
@@ -62,6 +63,7 @@
           </div>
 
           <div class="col m3 valign-wrapper">
+            <a class="btn-floating btn-large waves-effect waves-light teal valign" ng-if="student.resume_draft && !resume_draft"><i class="material-icons">check</i></a>
             <a class="btn-floating btn-large waves-effect waves-light light-green valign" ng-if="resume_draft" ng-click="uploadImage('resume_draft', resume_draft)"><i class="material-icons">{{status.resume_draft}}</i></a>
           </div>
         </div>
@@ -81,6 +83,7 @@
           </div>
 
           <div class="col m3 valign-wrapper">
+            <a class="btn-floating btn-large waves-effect waves-light teal valign" ng-if="student.resume_final && !resume_final"><i class="material-icons">check</i></a>
             <a class="btn-floating btn-large waves-effect waves-light light-green valign" ng-if="resume_final" ng-click="uploadImage('resume_final', resume_final)"><i class="material-icons">{{status.resume_final}}</i></a>
           </div>
         </div>
@@ -100,6 +103,7 @@
           </div>
 
           <div class="col m3 valign-wrapper">
+            <a class="btn-floating btn-large waves-effect waves-light teal valign" ng-if="student.resume_demo && !resume_demo"><i class="material-icons">check</i></a>
             <a class="btn-floating btn-large waves-effect waves-light light-green valign" ng-if="resume_demo" ng-click="uploadImage('resume_demo', resume_demo)"><i class="material-icons">{{status.resume_demo}}</i></a>
           </div>
         </div>

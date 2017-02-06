@@ -22,6 +22,16 @@ app.config (function($routeProvider){
 		controller: 'InputCtrl',
 		resolve: {isAuth}
 	}).
+	when('/individual/:studentId', {
+		templateUrl: 'partials/detail.html',
+		controller: 'InputCtrl',
+		resolve: {isAuth}
+	}).
+	when('/edit/:studentId', {
+		templateUrl: 'partials/input.html',
+		controller: 'InputEditCtrl',
+		resolve: {isAuth}
+	}).
 	otherwise('/')
 });
 
