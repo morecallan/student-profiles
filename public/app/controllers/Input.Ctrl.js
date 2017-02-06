@@ -1,4 +1,4 @@
-app.controller("InputCtrl", function($scope, DataFactory, StudentFactory){
+app.controller("InputCtrl", function($scope, $location, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
@@ -178,7 +178,8 @@ app.controller("InputCtrl", function($scope, DataFactory, StudentFactory){
 
   $scope.submitStudent = () => {
     StudentFactory.addNewStudent($scope.student).then((data) => {
-      console.log(data)
+      Materialize.toast("Student Added!", 3000, "green")
+      $location.path("/splash")
     })
   }
 })

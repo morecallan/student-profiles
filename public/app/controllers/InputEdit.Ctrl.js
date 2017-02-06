@@ -1,4 +1,4 @@
-app.controller("InputEditCtrl", function($scope, $routeParams, DataFactory, StudentFactory){
+app.controller("InputEditCtrl", function($scope, $location, $routeParams, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
@@ -28,7 +28,7 @@ app.controller("InputEditCtrl", function($scope, $routeParams, DataFactory, Stud
 
 
   $scope.uploadImage = (bucket, img) => {
-    uploadTask = storageRef.child(bucket).put(img);
+    uploadTask = storageRef.child(bucket).child(img.name).put(img);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
       $scope.status[bucket] = "query_builder";
       $scope.$apply();
@@ -153,7 +153,8 @@ app.controller("InputEditCtrl", function($scope, $routeParams, DataFactory, Stud
 
   $scope.submitStudent = () => {
     StudentFactory.updateOneStudent($scope.student, studentId).then((data) => {
-      console.log(data)
+      Materialize.toast("Student Updated!", 3000, "green")
+      $location.path("/splash")
     })
   }
 
