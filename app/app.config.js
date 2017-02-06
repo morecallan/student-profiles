@@ -17,14 +17,20 @@ app.config (function($routeProvider){
 		controller: 'SplashCtrl',
 		resolve: {isAuth}
 	}).
+	when('/input', {
+		templateUrl: 'partials/input.html',
+		controller: 'InputCtrl',
+		resolve: {isAuth}
+	}).
 	otherwise('/')
 });
-
 
 
 // this function is assigning the link to my Firebase url to a variable that will be used to decide whether or not the user is authorized on the Firebase account to make changes.
 app.run(($rootScope, $location, FIREBASE_CONFIG, AuthFactory) => {
 	firebase.initializeApp(FIREBASE_CONFIG);
+
+
 
 //watch method that fires on change of a route.  3 inputs.
     //event is a change event

@@ -1,6 +1,29 @@
 @import "splash";
 @import "login";
+@import "input";
+@import "sticky-note";
+
+.container-less {
+  width: 90%;
+  margin: 2% 5%;
+}
 
 .margin-top {
   margin-top: 20px;
+}
+
+.fixed-page-scroll {
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow-y: auto;
+}
+
+.buffer {
+  margin: 5px 0;
+}
+
+h4.center {
+  background-color: rgba(teal, 0.8);
+  padding: 4px;
+  color: white;
 }
