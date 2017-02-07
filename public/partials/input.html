@@ -1,5 +1,5 @@
 <!-- <div class="container"> -->
-<div class="row ">
+<div class="row">
   <form>
     <div class="row above-bg">
       <div class="input-field col s3">
@@ -27,15 +27,7 @@
 
   <div class="row">
     <div class="col m4 above-bg">
-      <div class="row" ng-if="!expanded">
-        <div class="col m7">
-          <h5 class="center">Resume and Photo</h5>
-        </div>
-        <div class="col m5 valign-wrapper">
-          <a class="waves-effect waves-light btn valign buffer-more" ng-click="expand()"><i class="material-icons right">expand_more</i>Expand</a>
-        </div>
-      </div>
-      <form ng-if="expanded">
+      <form>
         <!-- Input File Upload Row: personal_img-->
         <div class="row no-margin">
           <div class="col m9">
@@ -118,14 +110,10 @@
 
         <!-- Input Row: portfolio_site -->
         <div class="row no-margin">
-          <div class="input-field col s10">
+          <div class="input-field col s12">
             <input id="portfolio_site" ng-model="student.portfolio_site" type="text" class="validate">
             <label for="portfolio_site" data-error="not a valid website">Portfolio Site</label>
           </div>
-          <div class="col s2">
-            <a class="btn-floating btn-large waves-effect buffer waves-light teal valign" ng-click="expand()"><i class="material-icons">expand_less</i></a>
-          </div>
-
         </div>
 
       </form>

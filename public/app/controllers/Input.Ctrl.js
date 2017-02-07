@@ -187,6 +187,7 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
       let materializeAutoCompleteActions = {};
       materializeAutoCompleteActions.autocompleteData = data.autocompleteData
       $(document).ready(function() {
+        $('select').material_select();
         $('.chips-autocomplete').material_chip(materializeAutoCompleteActions)
        });
     })
