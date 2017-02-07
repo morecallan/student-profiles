@@ -218,4 +218,11 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
       $location.path("/splash")
     })
   }
+
+  $scope.submitStudentNoReturn = () => {
+    StudentFactory.addNewStudent($scope.student).then((data) => {
+      localStorageService.remove("student");
+      Materialize.toast("Student Added!", 3000, "green")
+    })
+  }
 })

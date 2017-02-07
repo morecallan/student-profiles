@@ -12,8 +12,8 @@
       </div>
       <div class="input-field col s3">
         <select ng-options="cohort as cohort.name for cohort in cohorts"
-            ng-model="cohort.name" ng-change="populateServerside(cohort)">
-            <option value="" disabled selected>Cohort</option>
+            ng-model="cohort.name" ng-value="student.cohort_name" ng-change="populateServerside(cohort)">
+            <option value="" selected disabled>Cohort</option>
         </select>
       </div>
       <div class="input-field col s3">
@@ -122,7 +122,7 @@
     <div id="stick-update">
       <div class="row buffer">
         <div class="col s6 offset-s3">
-          <button class="center btn-large deep-purple lighten-1" type="button" name="button" ng-click="submitStudent()">{{submitMessage}}</button>
+          <button class="center btn-large deep-purple lighten-1" type="button" name="button" ng-click="submitStudentNoReturn()">{{submitMessage}}</button>
         </div>
       </div>
     </div>

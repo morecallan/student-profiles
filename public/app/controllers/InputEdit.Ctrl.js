@@ -55,12 +55,12 @@ app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $route
 
   getItem("studentEditing").then((student) => {
     $scope.student = student
+    console.log($scope.student)
     $scope.$watch('student', submit, true)
     $(document).ready(function() {
       Materialize.updateTextFields();
     })
   });
-
 
 
   $scope.uploadImage = (bucket, img) => {
@@ -193,6 +193,13 @@ app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $route
       localStorageService.remove("student");
       Materialize.toast("Student Updated!", 3000, "green")
       $location.path("/splash")
+    })
+  }
+
+  $scope.submitStudentNoReturn = () => {
+    StudentFactory.updateOneStudent($scope.student, studentId).then((data) => {
+      localStorageService.remove("student");
+      Materialize.toast("Student Updated!", 3000, "green")
     })
   }
 
