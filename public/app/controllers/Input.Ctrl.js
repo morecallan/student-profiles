@@ -4,11 +4,9 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
 
   $scope.submitMessage = "Add Student"
 
-
   var submit = function() {
    return localStorageService.set("student", $scope.student);
   }
-
 
   $scope.$watch('student', submit, true)
   $scope.$watch('student.area_of_interest', submit, true)
@@ -20,11 +18,6 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
   $scope.$watch('student.previous_experience', submit, true)
   $scope.$watch('student.resume', submit, true)
   $scope.$watch('student.self_described_traits', submit, true)
-
-  $scope.expanded = false;
-  $scope.expand = () => {
-    $scope.expanded = !$scope.expanded
-  }
 
   $scope.cohorts = [];
 

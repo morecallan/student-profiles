@@ -55,6 +55,7 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
             `${FIREBASE_CONFIG.databaseURL}/students/${accessKey}.json`)
         .then((data) => {
           data = data.data
+          data.studentId = accessKey;
           resolve(data);
         }, (error) => reject(error));
     });

@@ -1,4 +1,4 @@
-app.controller("InputEditCtrl", function($scope, $timeout, $location, $routeParams, DataFactory, StudentFactory){
+app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $routeParams, localStorageService, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
@@ -9,21 +9,29 @@ app.controller("InputEditCtrl", function($scope, $timeout, $location, $routePara
     $scope.expanded = !$scope.expanded
   }
 
+  var submit = function() {
+   return localStorageService.set("studentEditing", $scope.student);
+  }
+
   $scope.submitMessage = "Update Student"
 
 
   let studentId = $routeParams.studentId
 
 
-  StudentFactory.returnOneStudent(studentId).then((data) => {
-    $scope.student = data;
-    $timeout(function(){
-      $(document).ready(function() {
-         Materialize.updateTextFields();
-         $('select').material_select();
-       });
-    }, 10)
-  })
+  const pullExistingStudentIfNotOneInLocalStorageEditMode = () => {
+    StudentFactory.returnOneStudent(studentId).then((data) => {
+      $scope.student = data;
+      $scope.$watch('student', submit, true)
+      $timeout(function(){
+        $(document).ready(function() {
+           Materialize.updateTextFields();
+           $('select').material_select();
+         });
+      }, 10)
+    })
+  }
+
 
 
   $scope.status = {
@@ -32,6 +40,26 @@ app.controller("InputEditCtrl", function($scope, $timeout, $location, $routePara
     resume_final: "file_upload",
     resume_demo: "file_upload"
   }
+
+  function getItem(key) {
+    return $q (function(resolve, reject) {
+      var student = localStorageService.get(key);
+      if (student && studentId == student.studentId) {
+        resolve(student)
+      } else {
+        pullExistingStudentIfNotOneInLocalStorageEditMode()
+        reject()
+      }
+    })
+  }
+
+  getItem("studentEditing").then((student) => {
+    $scope.student = student
+    $scope.$watch('student', submit, true)
+    $(document).ready(function() {
+      Materialize.updateTextFields();
+    })
+  });
 
 
 
@@ -162,6 +190,7 @@ app.controller("InputEditCtrl", function($scope, $timeout, $location, $routePara
 
   $scope.submitStudent = () => {
     StudentFactory.updateOneStudent($scope.student, studentId).then((data) => {
+      localStorageService.remove("student");
       Materialize.toast("Student Updated!", 3000, "green")
       $location.path("/splash")
     })
