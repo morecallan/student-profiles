@@ -183,6 +183,14 @@ app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $route
     }
   }
 
+  $scope.chips = [{
+        tag: 'Apple',
+    }, {
+        tag: 'Microsoft',
+    },{
+        tag: 'Google',
+    }];
+
 
   $scope.updateStudent = (studentKey, studentValue) => {
     $scope.student[studentKey] = studentValue;

@@ -12,7 +12,7 @@
       </div>
       <div class="input-field col s3">
         <select ng-options="cohort as cohort.name for cohort in cohorts"
-            ng-model="cohort.name" ng-value="student.cohort_name" ng-change="populateServerside(cohort)">
+            ng-model="cohort.name" ng-change="populateServerside(cohort)">
             <option value="" selected disabled>Cohort</option>
         </select>
       </div>
