@@ -63,7 +63,8 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
     student_concerns: "",
     target_companies: "",
     type_of_co_preferred_notes: "",
-    type_of_dev_notes: ""
+    type_of_dev_notes: "",
+    status: "enrolled"
   }
 
   function getItem(key) {
