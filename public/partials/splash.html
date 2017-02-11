@@ -16,7 +16,7 @@
           <img ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
           <span class="card-title">{{student.first_name}} {{student.last_name}}</span>
         </div>
-        <div class="card-content">
+        <div class="card-content {{student.statusColor}}">
           <div class="row">
             <div class="col m6">
               <p>{{student.cohort_name}}</p>
