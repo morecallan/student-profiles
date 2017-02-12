@@ -7,6 +7,12 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
     }
   })
 
+  $scope.deleteStudent = (studentId) => {
+    StudentFactory.deleteStudent(studentId).then((data) => {
+      $scope.students = data
+    })
+  }
+
   const colorBasedOnStatus = (status) => {
     if (status == "enrolled") {
       return "yellow"

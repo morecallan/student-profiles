@@ -61,6 +61,18 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
     });
   }
 
-  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent}
+  const deleteStudent = (studentId) => {
+    return $q(function(resolve, reject) {
+        $http.delete(
+            `${FIREBASE_CONFIG.databaseURL}/students/${studentId}.json`)
+        .then((data) => {
+          returnAllStudents().then((students) => {
+            resolve(students);
+          })
+        }, (error) => reject(error));
+    });
+  }
+
+  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent, deleteStudent: deleteStudent}
 
 })
