@@ -8,22 +8,39 @@ const isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 
 app.config (function($routeProvider){
 	$routeProvider.
-	when('/login', {
+	when('/', {
 		templateUrl: 'partials/login.html',
 		controller: 'LoginCtrl'
 	}).
 	when('/splash', {
 		templateUrl: 'partials/splash.html',
 		controller: 'SplashCtrl',
-		resolve: {isAuth}
+		// resolve: {isAuth}
 	}).
 	when('/input', {
 		templateUrl: 'partials/input.html',
 		controller: 'InputCtrl',
-		resolve: {isAuth}
+		// resolve: {isAuth}
+	}).
+	when('/individual/:studentId', {
+		templateUrl: 'partials/detail.html',
+		controller: 'InputCtrl',
+		// resolve: {isAuth}
+	}).
+	when('/edit/:studentId', {
+		templateUrl: 'partials/input.html',
+		controller: 'InputEditCtrl',
+		// resolve: {isAuth}
 	}).
 	otherwise('/')
 });
+
+app.config(function(localStorageServiceProvider) {
+	localStorageServiceProvider
+    .setPrefix('StudentProfile')
+    .setStorageCookie(45, '/', false)
+    .setStorageCookieDomain(window.location)
+})
 
 
 // this function is assigning the link to my Firebase url to a variable that will be used to decide whether or not the user is authorized on the Firebase account to make changes.
@@ -38,24 +55,24 @@ app.run(($rootScope, $location, FIREBASE_CONFIG, AuthFactory) => {
     //prevRoute is information about the route you came from
 
 // This says that when authentication takes place, if the data that is entered in does not match the data within firebase that is authorized, then send the user back to the login screen to try again.
-$rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
-        // checks to see if there is a current user
-        var logged = AuthFactory.isAuthenticated();
-
-        var appTo;
-
-        // to keep error from being thrown on page refresh
-        if(currRoute.originalPath){
-          // check if the user is going to the auth page = currRoute.originalPath
-          // if user is on auth page then appTo is true
-          // if it finds something other than /auth it return a -1 and -1!==-1 so resolves to false
-          appTo = currRoute.originalPath.indexOf('/login') !== -1;
-      }
-
-        //if not on /auth page AND not logged in redirect to /auth
-        if(!appTo && !logged) {
-        	event.preventDefault();
-        	$location.path('/login');
-        }
-    })
+// $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
+//         // checks to see if there is a current user
+//         var logged = AuthFactory.isAuthenticated();
+//
+//         var appTo;
+//
+//         // to keep error from being thrown on page refresh
+//         if(currRoute.originalPath){
+//           // check if the user is going to the auth page = currRoute.originalPath
+//           // if user is on auth page then appTo is true
+//           // if it finds something other than /auth it return a -1 and -1!==-1 so resolves to false
+//           appTo = currRoute.originalPath.indexOf('/login') !== -1;
+//       }
+//
+//         //if not on /auth page AND not logged in redirect to /auth
+//         if(!appTo && !logged) {
+//         	event.preventDefault();
+//         	$location.path('/login');
+//         }
+//     })
 })

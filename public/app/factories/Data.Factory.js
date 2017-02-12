@@ -1,7 +1,7 @@
 app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
     let returnCohortList = () => {
       return $q((resolve, reject) => {
-        $http.get(`./app/data/cohort_seed.json`)
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/cohort_list.json`)
           .then((cohorts) => {
             resolve(cohorts.data.cohorts);
           }).catch((error)=> {
@@ -10,9 +10,12 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
+
+
+
     let returnPreviousExperienceList = () => {
       return $q((resolve, reject) => {
-        $http.get(`./app/data/previous_experience.json`)
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/previous_experience.json`)
           .then((previous_experience) => {
             let previous = previous_experience.data["previous_experience"].sort();
             previous.splice(previous.indexOf("None/Education"), 1);
@@ -30,7 +33,7 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
 
     let returnTypeOfDevList = () => {
       return $q((resolve, reject) => {
-        $http.get(`./app/data/type_of_dev_seed.json`)
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/type_of_dev.json`)
           .then((typeOfDev) => {
             let typeOfDevList = typeOfDev.data["type-of-dev"];
             resolve(typeOfDevList);
@@ -42,7 +45,7 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
 
     let returnTypeOfPersonalityList = () => {
       return $q((resolve, reject) => {
-        $http.get(`./app/data/personality_traits_seed.json`)
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/personality_traits.json`)
           .then((personalityTypes) => {
             let personalityTypeList = personalityTypes.data["personality_traits"];
             let materializeObject = {}
@@ -59,7 +62,7 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
 
     let returnTypeOfCompanyList = () => {
       return $q((resolve, reject) => {
-        $http.get(`./app/data/type_of_company_seed.json`)
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/type_of_co.json`)
           .then((typeOfCo) => {
             let typeOfCoList = typeOfCo.data["type-of-dev"];
             resolve(typeOfCoList);
@@ -71,7 +74,7 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
 
     let returnAreasOfInterest = () => {
       return $q((resolve, reject) => {
-        $http.get(`./app/data/areas_of_interest_seed.json`)
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/areas_of_interest.json`)
           .then((areaOfInterest) => {
             let areaOfInterestList = areaOfInterest.data["areas-of-interest"];
             resolve(areaOfInterestList);

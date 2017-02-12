@@ -15,6 +15,20 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
           });
       };
 
+  var updateOneStudent = function(student, studentId){
+          console.log(studentId)
+          return $q(function(resolve, reject) {
+              $http.put(
+                  `${FIREBASE_CONFIG.databaseURL}/students/${studentId}.json`,
+                  JSON.stringify(student)
+              )
+              .then((data) => {
+                console.log(data)
+                resolve(data);
+              }, (error) => reject(error));
+          });
+      };
+
   var returnAllStudents = function() {
     return $q(function(resolve, reject) {
         $http.get(
@@ -40,11 +54,25 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
         $http.get(
             `${FIREBASE_CONFIG.databaseURL}/students/${accessKey}.json`)
         .then((data) => {
+          data = data.data
+          data.studentId = accessKey;
           resolve(data);
         }, (error) => reject(error));
     });
   }
 
-  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent}
+  const deleteStudent = (studentId) => {
+    return $q(function(resolve, reject) {
+        $http.delete(
+            `${FIREBASE_CONFIG.databaseURL}/students/${studentId}.json`)
+        .then((data) => {
+          returnAllStudents().then((students) => {
+            resolve(students);
+          })
+        }, (error) => reject(error));
+    });
+  }
+
+  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent, deleteStudent: deleteStudent}
 
 })

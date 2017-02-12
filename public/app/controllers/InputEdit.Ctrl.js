@@ -1,25 +1,38 @@
-app.controller("InputCtrl", function($scope, $q, $location, DataFactory, StudentFactory, localStorageService){
+app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $routeParams, localStorageService, DataFactory, StudentFactory){
   var storage = firebase.storage();
 	var storageRef= firebase.storage().ref();
 
-  $scope.submitMessage = "Add Student"
+  $scope.cohorts = [];
 
-  var submit = function() {
-   return localStorageService.set("student", $scope.student);
+  $scope.expanded = false;
+  $scope.expand = () => {
+    $scope.expanded = !$scope.expanded
   }
 
-  $scope.$watch('student', submit, true)
-  $scope.$watch('student.area_of_interest', submit, true)
-  $scope.$watch('student.company_type', submit, true)
-  $scope.$watch('student.dev_type', submit, true)
-  $scope.$watch('student.linkedin', submit, true)
-  $scope.$watch('student.observed_traits', submit, true)
-  $scope.$watch('student.portfolio', submit, true)
-  $scope.$watch('student.previous_experience', submit, true)
-  $scope.$watch('student.resume', submit, true)
-  $scope.$watch('student.self_described_traits', submit, true)
+  var submit = function() {
+   return localStorageService.set("studentEditing", $scope.student);
+  }
 
-  $scope.cohorts = [];
+  $scope.submitMessage = "Update Student"
+
+
+  let studentId = $routeParams.studentId
+
+
+  const pullExistingStudentIfNotOneInLocalStorageEditMode = () => {
+    StudentFactory.returnOneStudent(studentId).then((data) => {
+      $scope.student = data;
+      $scope.$watch('student', submit, true)
+      $timeout(function(){
+        $(document).ready(function() {
+           Materialize.updateTextFields();
+           $('select').material_select();
+         });
+      }, 10)
+    })
+  }
+
+
 
   $scope.status = {
     personal_img: "file_upload",
@@ -28,58 +41,22 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
     resume_demo: "file_upload"
   }
 
-  $scope.student = {
-    area_of_interest: [],
-    cohort_name: "",
-    company_type: [],
-    dev_type: [],
-    first_name: "",
-    last_name: "",
-    linkedin: {},
-    networking_notes: "",
-    observed_traits: [],
-    other_notes: "",
-    personal_img: "",
-    portfolio: {
-      format: "",
-      general: "",
-      projects: ""
-    },
-    prediction: "",
-    previous_experience: [],
-    previous_experience_notes: "",
-    resume: {
-      formatting: "",
-      general: "",
-      nss_job_description: "",
-      previous_work_history: "",
-      projects: ""
-    },
-    resume_demo: "",
-    resume_draft: "",
-    resume_final: "",
-    self_described_traits: [],
-    server_side: "",
-    student_concerns: "",
-    target_companies: "",
-    type_of_co_preferred_notes: "",
-    type_of_dev_notes: "",
-    status: "enrolled"
-  }
-
   function getItem(key) {
     return $q (function(resolve, reject) {
       var student = localStorageService.get(key);
-      if (student) {
+      if (student && studentId == student.studentId) {
         resolve(student)
       } else {
+        pullExistingStudentIfNotOneInLocalStorageEditMode()
         reject()
       }
     })
   }
 
-  getItem("student").then((student) => {
+  getItem("studentEditing").then((student) => {
     $scope.student = student
+    console.log($scope.student)
+    $scope.$watch('student', submit, true)
     $(document).ready(function() {
       Materialize.updateTextFields();
     })
@@ -87,7 +64,7 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
 
 
   $scope.uploadImage = (bucket, img) => {
-    uploadTask = storageRef.child(bucket).put(img);
+    uploadTask = storageRef.child(bucket).child(img.name).put(img);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
       $scope.status[bucket] = "query_builder";
       $scope.$apply();
@@ -181,7 +158,6 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
       let materializeAutoCompleteActions = {};
       materializeAutoCompleteActions.autocompleteData = data.autocompleteData
       $(document).ready(function() {
-        $('select').material_select();
         $('.chips-autocomplete').material_chip(materializeAutoCompleteActions)
        });
     })
@@ -207,23 +183,35 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
     }
   }
 
+  $scope.chips = [{
+        tag: 'Apple',
+    }, {
+        tag: 'Microsoft',
+    },{
+        tag: 'Google',
+    }];
+
 
   $scope.updateStudent = (studentKey, studentValue) => {
     $scope.student[studentKey] = studentValue;
   }
 
   $scope.submitStudent = () => {
-    StudentFactory.addNewStudent($scope.student).then((data) => {
+    StudentFactory.updateOneStudent($scope.student, studentId).then((data) => {
       localStorageService.remove("student");
-      Materialize.toast("Student Added!", 3000, "green")
+      Materialize.toast("Student Updated!", 3000, "green")
       $location.path("/splash")
     })
   }
 
   $scope.submitStudentNoReturn = () => {
-    StudentFactory.addNewStudent($scope.student).then((data) => {
+    StudentFactory.updateOneStudent($scope.student, studentId).then((data) => {
       localStorageService.remove("student");
-      Materialize.toast("Student Added!", 3000, "green")
+      Materialize.toast("Student Updated!", 3000, "green")
     })
   }
+
+
+
+
 })

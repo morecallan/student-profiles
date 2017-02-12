@@ -11,7 +11,7 @@
   </head>
   <body ng-app="StudentProfile">
     <div class="gradient-overlay"></div>
-    <div class="container-less fixed-page-scroll" ng-view></div>
+    <div class="container-less" ng-view></div>
 
 
   <!-- SCRIPTS -->
@@ -26,8 +26,11 @@
   <script src="lib/node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
   <!-- Angular Route: Latest compiled and minified JavaScript -->
   <script src="lib/bower_components/angular-route/angular-route.min.js"></script>
+  <script src="lib/node_modules/angular-local-storage/dist/angular-local-storage.js"></script>
   <!-- Materialize: Latest compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+
 
   <!-- Angular Material Library -->
   <!-- FIREBASE INIT -->
@@ -42,6 +45,7 @@
   <script type="text/javascript" src="app/controllers/Login.Ctrl.js"></script>
   <script type="text/javascript" src="app/controllers/Splash.Ctrl.js"></script>
   <script type="text/javascript" src="app/controllers/Input.Ctrl.js"></script>
+  <script type="text/javascript" src="app/controllers/InputEdit.Ctrl.js"></script>
   <!-- FIREBASE INIT CONFIG -->
   <script type="text/javascript" src="app/data/firebase.config.js"></script>
   <script type="text/javascript" src="app/app.config.js"></script>

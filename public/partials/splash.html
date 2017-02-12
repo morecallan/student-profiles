@@ -1,4 +1,4 @@
-<div class="container-less" id="splash-page">
+<div class="container-less fixed-page-scroll" id="splash-page">
   <div class="row">
     <div class="col m11">
       <h4 class="center">NSS Students</h4>
@@ -16,15 +16,16 @@
           <img ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
           <span class="card-title">{{student.first_name}} {{student.last_name}}</span>
         </div>
-        <div class="card-content">
+        <div class="card-content {{student.statusColor}}">
           <div class="row">
             <div class="col m6">
               <p>{{student.cohort_name}}</p>
               <p>{{student.server_side}}</p>
             </div>
             <div class="col m6">
-              <a class="left btn-floating halfway-fab waves-effect waves-light blue-grey" ng-href="/#/individual/{{student.id}}"><i class="material-icons">edit</i></a>
-              <a class="right btn-floating halfway-fab waves-effect waves-light teal lighten-1" ng-href="/#/login/{{student.id}}"><i class="material-icons">face</i></a>
+              <a class="left btn-floating halfway-fab waves-effect waves-light blue-grey" ng-href="#!/edit/{{student.id}}"><i class="material-icons">edit</i></a>
+              <a class="right btn-floating halfway-fab waves-effect waves-light teal lighten-1" ng-href="#!/individual/{{student.id}}"><i class="material-icons">face</i></a>
+              <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="deleteStudent(student.id)"><i class="material-icons">delete</i></button>
             </div>
           </div>
         </div>
