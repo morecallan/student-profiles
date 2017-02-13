@@ -8,9 +8,17 @@
     </div>
   </div>
 
+  <div class="row  container-less">
+    <div class="input-field col s12">
+      <i class="material-icons prefix">search</i>
+      <input id="searchField" type="text" class="validate" ng-model="searchText">
+      <label for="searchField">Filter</label>
+    </div>
+  </div>
+
 
   <div id="card-container" class="row container-less">
-    <div class="col s12 m6 l3" ng-repeat="student in students track by $index">
+    <div class="col s12 m6 l3" ng-repeat="student in students | filter: searchText">
       <div class="card">
         <div class="card-image card-image-set-height">
           <img ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
