@@ -33,11 +33,24 @@
             <div class="col m6">
               <a class="left btn-floating halfway-fab waves-effect waves-light blue-grey" ng-href="#!/edit/{{student.id}}"><i class="material-icons">edit</i></a>
               <a class="right btn-floating halfway-fab waves-effect waves-light teal lighten-1" ng-href="#!/individual/{{student.id}}"><i class="material-icons">face</i></a>
-              <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="deleteStudent(student.id)"><i class="material-icons">delete</i></button>
+              <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="modalShift()"><i class="material-icons">delete</i></button>
+            </div>
+
+            <!-- Modal for "are you sure delete??" -->
+            <div class="mock-modal">
+              <h6 class="center">Are you sure you want to delete?</h6>
+              <div class="row">
+                <button class="right btn-floating halfway-fab waves-effect waves-light teal" ng-click="deleteStudent(student.id)"><i class="material-icons">nah</i></button>
+                <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="modalShift()"><i class="material-icons">delete</i></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
 </div>
