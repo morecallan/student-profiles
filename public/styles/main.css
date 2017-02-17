@@ -25,10 +25,11 @@
 
 .mock-modal {
   position: absolute;
-  background-color: rgba(0, 128, 128, 0.9);
+  background-color: rgba(128, 0, 128, 0.9);
   width: 90%;
   top: 20%;
-  left: 5%; }
+  left: 5%;
+  z-index: 9999; }
 
 #other-notes {
   width: 30%;

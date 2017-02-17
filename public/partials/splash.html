@@ -21,7 +21,7 @@
     <div class="col s12 m6 l3" ng-repeat="student in students | filter: searchText">
       <div class="card">
         <div class="card-image card-image-set-height">
-          <img ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
+          <img fallback-src="http://semantic-ui.com/images/avatar2/large/rachel.png" ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
           <span class="card-title">{{student.first_name}} {{student.last_name}}</span>
         </div>
         <div class="card-content {{student.statusColor}}">
@@ -38,10 +38,10 @@
 
             <!-- Modal for "are you sure delete??" -->
             <div class="mock-modal" ng-show="modalOpen">
-              <h6 class="center">Are you sure you want to delete?</h6>
+              <h4 class="center white-text">Are you sure you want to delete?</h4>
               <div class="row">
-                <button class="btn teal col s4 offset-s1" ng-click="deleteStudent(student.id)"><i class="material-icons"></i>nah</button>
-                <button class="btn red col s4 offset-s2" ng-click="modalShift(this)"><i class="material-icons">delete</i></button>
+                <button class="btn teal col s4 offset-s1" ng-click="modalShift(this)"><i class="material-icons"></i>nah</button>
+                <button class="btn red col s4 offset-s2" ng-click="deleteStudent(student.id)"><i class="material-icons">delete</i></button>
               </div>
             </div>
           </div>
