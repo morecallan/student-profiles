@@ -7,7 +7,7 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
     }
   })
 
-  $scope.modalOpen = false;
+  // $scope.modalOpen = true;
 
   $scope.modalShift = (context) => {
     context.modalOpen = !context.modalOpen;
