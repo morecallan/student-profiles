@@ -351,11 +351,47 @@
           </div>
         </div>
 
+
+
+        <div id="instructor_feedback">
+          <div class="row container-less">
+            <h4 class="center">Instructor Feeback</h4>
+            <select multiple class="center" ng-options="inst as inst for inst in instructors"
+                ng-model="student.frontend.instructor" ng-value="student.frontend.instructor">
+                <option value="" disabled selected>Frontend Instructor</option>
+            </select>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="frontend_instructor_notes" ng-model="student.frontend.instructor_notes" class="materialize-textarea"></textarea>
+              <label for="frontend_instructor_notes">Frontend Instructor Notes:</label>
+            </div>
+          </div>
+
+          <div class="row container-less">
+            <select multiple class="center" ng-options="inst as inst for inst in instructors"
+                ng-model="student.backend.instructor" ng-value="student.backend.instructor">
+                <option value="" disabled selected>Backend Instructor</option>
+            </select>
+          </div>
+
+          <div class="row container-less">
+            <div class="input-field col s12">
+              <textarea id="backend_instructor_notes" ng-model="student.backend.instructor_notes" class="materialize-textarea"></textarea>
+              <label for="backend_instructor_notes">Backend Instructor Notes:</label>
+            </div>
+          </div>
+        </div>
+
+
         <div class="row buffer">
           <div class="col s4 offset-s4">
             <button class="center btn-large deep-purple lighten-1" type="button" name="button" ng-click="submitStudent()">{{submitMessage}}</button>
           </div>
         </div>
+
+
       </form>
     </div>
 </div>

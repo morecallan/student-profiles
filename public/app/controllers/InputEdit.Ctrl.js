@@ -122,6 +122,15 @@ app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $route
     })
   }
 
+  var populateInstructorsList = () => {
+    DataFactory.returnFrontEndInstructorList().then((data)=> {
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+      $scope.instructors = data;
+    })
+  }
+
 
     var populateAllDropDowns = () => {
       populateDropdownCompany();
@@ -129,6 +138,8 @@ app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $route
       populateDropdownJobs();
       populateDropdownDev();
       populateAreaOfInterest();
+      populateInstructorsList();
+
     }
 
     populateAllDropDowns();
@@ -210,8 +221,4 @@ app.controller("InputEditCtrl", function($scope, $timeout, $q, $location, $route
       Materialize.toast("Student Updated!", 3000, "green")
     })
   }
-
-
-
-
 })

@@ -7,6 +7,12 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
     }
   })
 
+  // $scope.modalOpen = true;
+
+  $scope.modalShift = (context) => {
+    context.modalOpen = !context.modalOpen;
+  }
+
   $scope.deleteStudent = (studentId) => {
     StudentFactory.deleteStudent(studentId).then((data) => {
       $scope.students = data

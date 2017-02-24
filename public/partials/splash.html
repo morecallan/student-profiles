@@ -8,12 +8,20 @@
     </div>
   </div>
 
+  <div class="row  container-less">
+    <div class="input-field col s12">
+      <i class="material-icons prefix">search</i>
+      <input id="searchField" type="text" class="validate" ng-model="searchText">
+      <label for="searchField">Filter</label>
+    </div>
+  </div>
+
 
   <div id="card-container" class="row container-less">
-    <div class="col s12 m6 l3" ng-repeat="student in students track by $index">
+    <div class="col s12 m6 l3" ng-repeat="student in students | filter: searchText">
       <div class="card">
         <div class="card-image card-image-set-height">
-          <img ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
+          <img fallback-src="http://semantic-ui.com/images/avatar2/large/rachel.png" ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
           <span class="card-title">{{student.first_name}} {{student.last_name}}</span>
         </div>
         <div class="card-content {{student.statusColor}}">
@@ -25,11 +33,32 @@
             <div class="col m6">
               <a class="left btn-floating halfway-fab waves-effect waves-light blue-grey" ng-href="#!/edit/{{student.id}}"><i class="material-icons">edit</i></a>
               <a class="right btn-floating halfway-fab waves-effect waves-light teal lighten-1" ng-href="#!/individual/{{student.id}}"><i class="material-icons">face</i></a>
-              <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="deleteStudent(student.id)"><i class="material-icons">delete</i></button>
+              <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="modalShift(this)"><i class="material-icons">delete</i></button>
+            </div>
+
+            <!-- Modal for "are you sure delete??" -->
+            <div class="mock-modal" ng-show="modalOpen">
+              <h4 class="center white-text">Are you sure you want to delete?</h4>
+              <div class="row">
+                <button class="btn teal col s4 offset-s1" ng-click="modalShift(this)"><i class="material-icons"></i>nah</button>
+                <button class="btn red col s4 offset-s2" ng-click="deleteStudent(student.id)"><i class="material-icons">delete</i></button>
+              </div>
+            </div>
+
+            <div class="mock-modal" ng-show="editModalOpen">
+              <h4 class="center white-text">Edit Student</h4>
+              <div class="row">
+                <button class="btn teal col s4 offset-s1" ng-click="modalShift(this)"><i class="material-icons"></i>nah</button>
+                <button class="btn red col s4 offset-s2" ng-click="deleteStudent(student.id)"><i class="material-icons">delete</i></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
 </div>

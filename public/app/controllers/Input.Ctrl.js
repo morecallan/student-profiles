@@ -30,10 +30,18 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
 
   $scope.student = {
     area_of_interest: [],
+    backend: {
+      instructor: "",
+      instructor_notes: ""
+    },
     cohort_name: "",
     company_type: [],
     dev_type: [],
     first_name: "",
+    frontend: {
+      instructor: "",
+      instructor_notes: ""
+    },
     last_name: "",
     linkedin: {},
     networking_notes: "",
@@ -145,6 +153,15 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
     })
   }
 
+  var populateInstructorsList = () => {
+    DataFactory.returnFrontEndInstructorList().then((data)=> {
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+      $scope.instructors = data;
+    })
+  }
+
 
     var populateAllDropDowns = () => {
       populateDropdownCompany();
@@ -152,6 +169,7 @@ app.controller("InputCtrl", function($scope, $q, $location, DataFactory, Student
       populateDropdownJobs();
       populateDropdownDev();
       populateAreaOfInterest();
+      populateInstructorsList();
     }
 
     populateAllDropDowns();

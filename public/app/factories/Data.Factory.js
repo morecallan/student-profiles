@@ -84,5 +84,17 @@ app.factory("DataFactory", function($q, $http, FIREBASE_CONFIG){
       });
     };
 
-    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList, returnTypeOfCompanyList: returnTypeOfCompanyList, returnAreasOfInterest: returnAreasOfInterest}
+    let returnFrontEndInstructorList = () => {
+      return $q((resolve, reject) => {
+        $http.get(`${FIREBASE_CONFIG.databaseURL}/instructors.json`)
+          .then((instructors) => {
+            var instructors = instructors.data["instructors"];
+            resolve(instructors);
+          }).catch((error)=> {
+            reject(error);
+          });
+      });
+    };
+
+    return {returnCohortList: returnCohortList, returnPreviousExperienceList: returnPreviousExperienceList, returnTypeOfDevList: returnTypeOfDevList, returnTypeOfPersonalityList: returnTypeOfPersonalityList, returnTypeOfCompanyList: returnTypeOfCompanyList, returnAreasOfInterest: returnAreasOfInterest, returnFrontEndInstructorList: returnFrontEndInstructorList}
 })
