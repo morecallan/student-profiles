@@ -29,6 +29,18 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
           });
       };
 
+  var updateOneStudentStatus = function(student, studentId){
+          return $q(function(resolve, reject) {
+              $http.put(
+                  `${FIREBASE_CONFIG.databaseURL}/students/${studentId}.json`,
+                  student
+              )
+              .then((data) => {
+                resolve(data)
+              }, (error) => reject(error));
+          });
+      };
+
   var returnAllStudents = function() {
     return $q(function(resolve, reject) {
         $http.get(
@@ -73,6 +85,6 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
     });
   }
 
-  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent, deleteStudent: deleteStudent}
+  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent, deleteStudent: deleteStudent, updateOneStudentStatus: updateOneStudentStatus}
 
 })

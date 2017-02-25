@@ -1,10 +1,14 @@
 app.controller("SplashCtrl", function($scope, StudentFactory){
-  StudentFactory.returnAllStudents().then((data) => {
-    $scope.students = data
-    for (var i = 0; i < $scope.students.length; i++) {
-      $scope.students[i].statusColor = colorBasedOnStatus($scope.students[i].status);
-    }
-  })
+
+  $scope.populatePage = () => {
+    StudentFactory.returnAllStudents().then((data) => {
+      $scope.students = data
+      for (var i = 0; i < $scope.students.length; i++) {
+        $scope.students[i].statusColor = colorBasedOnStatus($scope.students[i].status);
+      }
+    })
+  }
+  $scope.populatePage();
 
   $scope.modalOpen = false;
   $scope.editModalOpen = false;
@@ -30,17 +34,16 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
     })
   }
 
-  $scope.editStudentStatus = (studentId, status) => {
-    console.log(studentId, status)
-    // StudentFactory.editStudentStatus(studentId, status).then((data) => {
-    //   $scope.students = data
-    // })
+  $scope.editStudentStatus = (studentId, student, status) => {
+    student.status = status
+    StudentFactory.updateOneStudentStatus(student, studentId).then((data) => {
+      $scope.populatePage();
+    })
   }
 
 
 
   const colorBasedOnStatus = (status) => {
-    console.log(status)
     if (status == "enrolled") {
       return "yellow"
     } else if (status == "seeking") {
