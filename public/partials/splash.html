@@ -17,9 +17,9 @@
   </div>
 
 
-  <div id="card-container" class="row container-less">
+  <div id="card-container" class="row container-less" >
     <div class="col s12 m6 l3" ng-repeat="student in students | filter: searchText">
-      <div class="card">
+      <div class="card" ng-click="closeAllModals(this, $event)">
         <div class="card-image card-image-set-height">
           <img fallback-src="http://semantic-ui.com/images/avatar2/large/rachel.png" ng-src={{student.personal_img?student.personal_img:'http://semantic-ui.com/images/avatar2/large/rachel.png'}}>
           <span class="card-title">{{student.first_name}} {{student.last_name}}</span>
@@ -34,6 +34,7 @@
               <a class="left btn-floating halfway-fab waves-effect waves-light blue-grey" ng-href="#!/edit/{{student.id}}"><i class="material-icons">edit</i></a>
               <a class="right btn-floating halfway-fab waves-effect waves-light teal lighten-1" ng-href="#!/individual/{{student.id}}"><i class="material-icons">face</i></a>
               <button class="right btn-floating halfway-fab waves-effect waves-light red" ng-click="modalShift(this)"><i class="material-icons">delete</i></button>
+              <button class="right btn-floating halfway-fab waves-effect waves-light purple" ng-click="editModalShift(this)"><i class="material-icons">edit</i></button>
             </div>
 
             <!-- Modal for "are you sure delete??" -->
@@ -46,10 +47,10 @@
             </div>
 
             <div class="mock-modal" ng-show="editModalOpen">
-              <h4 class="center white-text">Edit Student</h4>
+              <h4 class="center white-text">Job Status</h4>
               <div class="row">
-                <button class="btn red col s3 offset-s2" ng-click="deleteStudent(student.id)">looking!</button>
-                <button class="btn green col s3 offset-s2" ng-click="deleteStudent(student.id)">job!</button>
+                <button class="btn green col s5 offset-s1" ng-click="editStudentStatus(student.id, 'seeking')">lookin!</button>
+                <button class="btn red col s5" ng-click="editStudentStatus(student.id, 'job')">job!</button>
               </div>
             </div>
           </div>
