@@ -30,19 +30,19 @@ body {
   background-color: rgba(white, 0.8);
   position: relative;
   top: 20px;
-  z-index: 1000;
+  z-index: 500;
 }
 
 .above-bg {
   background-color: rgba(white, 0.8);
   position: relative;
-  z-index: 1000;
+  z-index: 400;
 }
 
 .less-above-bg {
   background-color: rgba(white, 0.8);
   position: relative;
-  z-index: 900;
+  z-index: 300;
 }
 
 .less-less-above-bg {
