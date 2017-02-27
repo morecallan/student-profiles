@@ -12,7 +12,15 @@ app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
 
 //Firebase: Return email, UID for user that is currently logged in.
   let getUser = () => {
-    return firebase.auth().currentUser;
+    return $q((resolve, reject) => {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          resolve(firebase.auth().currentUser)
+        } else {
+          console.log("meh")
+        }
+      });
+    })
   };
 
 // Kills browser cookie with firebase credentials

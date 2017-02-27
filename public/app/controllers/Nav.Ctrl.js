@@ -10,7 +10,14 @@ app.controller("navCtrl", function($scope, AuthFactory){
   }
 
   $scope.loadAccountInfo = () => {
-
+    AuthFactory.getUser().then((user) => {
+      console.log(user)
+      $scope.account = {
+        photo: user.photoURL,
+        name: user.displayName,
+        email: user.email
+      }
+    });
   }
 
   $scope.loadAccountInfo()
