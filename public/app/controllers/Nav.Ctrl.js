@@ -11,7 +11,6 @@ app.controller("navCtrl", function($scope, AuthFactory){
 
   $scope.loadAccountInfo = () => {
     AuthFactory.getUser().then((user) => {
-      console.log(user)
       $scope.account = {
         photo: user.photoURL,
         name: user.displayName,
@@ -19,6 +18,14 @@ app.controller("navCtrl", function($scope, AuthFactory){
       }
     });
   }
+
+
+  $scope.massUpdate = (cohort) => {
+    console.log(cohort)
+    // StudentFactory.massUpdateStudentSeekingStatus().then()
+  }
+
+
 
   $scope.loadAccountInfo()
 
