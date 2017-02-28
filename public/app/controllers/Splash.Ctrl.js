@@ -3,9 +3,6 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
   $scope.populatePage = () => {
     StudentFactory.returnAllStudents().then((data) => {
       $scope.students = data
-      for (var i = 0; i < $scope.students.length; i++) {
-        $scope.students[i].statusColor = colorBasedOnStatus($scope.students[i].status);
-      }
     })
   }
   $scope.populatePage();
@@ -39,17 +36,5 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
     StudentFactory.updateOneStudentStatus(student, studentId).then((data) => {
       $scope.populatePage();
     })
-  }
-
-
-
-  const colorBasedOnStatus = (status) => {
-    if (status == "enrolled") {
-      return "yellow"
-    } else if (status == "seeking") {
-      return "green"
-    } else {
-      return "red"
-    }
   }
 })

@@ -2,6 +2,17 @@
 
 app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
 
+  const colorBasedOnStatus = (status) => {
+    if (status == "enrolled") {
+      return "yellow"
+    } else if (status == "seeking") {
+      return "green"
+    } else {
+      return "red"
+    }
+  }
+
+
   var addNewStudent = function(student){
           return $q(function(resolve, reject) {
               $http.post(
@@ -55,6 +66,10 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
                       data[key].id=key; //go through the item collection object by each key and sets the id value to the key value
                       students.push(data[key]); //pushes each itemCollection object to the $scope array
                   });
+                  //Updates Status Color On Card for Students
+                  for (var i = 0; i < students.length; i++) {
+                    students[i].statusColor = colorBasedOnStatus(students[i].status);
+                  }
                   resolve(students);
               }
         }, (error) => reject(error));
