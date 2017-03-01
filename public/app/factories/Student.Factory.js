@@ -100,6 +100,29 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
     });
   }
 
-  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent, deleteStudent: deleteStudent, updateOneStudentStatus: updateOneStudentStatus}
+  const massUpdateCohort = (cohort, status) => {
+    return $q(function(resolve, reject) {
+      returnAllStudents().then((students) => {
+        let toUpdate = []
+
+        //Check students against cohort being passed in
+        for (var i = 0; i < students.length; i++) {
+          if (students[i].cohort == cohort) {
+            toUpdate.push(students[i])
+          }
+        }
+        //Update all eligible students with correct status
+        for (var j = 0; i < toUpdate.length; i++) {
+          toUpdate[i].status = status;
+          updateOneStudentStatus(toUpdate[i], toUpdate[i].id)
+        }
+        returnAllStudents().then((students) => {
+          resolve(students)
+        }
+      }
+    })
+  }
+
+  return {addNewStudent: addNewStudent, returnAllStudents: returnAllStudents, returnOneStudent: returnOneStudent, updateOneStudent: updateOneStudent, deleteStudent: deleteStudent, updateOneStudentStatus: updateOneStudentStatus, massUpdateCohort: massUpdateCohort}
 
 })
