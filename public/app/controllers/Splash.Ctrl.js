@@ -37,4 +37,10 @@ app.controller("SplashCtrl", function($scope, StudentFactory){
       $scope.populatePage();
     })
   }
+
+  $scope.massUpdateCohort = (cohort) => {
+    StudentFactory.massUpdateCohort(cohort).then((students) => {
+      $scope.students = students
+    })
+  }
 })
