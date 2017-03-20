@@ -118,8 +118,8 @@ app.factory("StudentFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
         }
         returnAllStudents().then((students) => {
           resolve(students)
-        }
-      }
+        })
+      })
     })
   }
 
