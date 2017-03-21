@@ -32,6 +32,11 @@ app.config (function($routeProvider){
 		controller: 'InputEditCtrl',
 		// resolve: {isAuth}
 	}).
+	when('/home', {
+		templateUrl: 'partials/on-the-go.html',
+		controller: 'OnTheGoCtrl',
+		// resolve: {isAuth}
+	}).
 	otherwise('/')
 });
 
